@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "282402832864",
+    "project_id": "treepy-4cc05",
+    "storage_bucket": "treepy-4cc05.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:282402832864:android:7774e454633aca50aa6b85",
+        "android_client_info": {
+          "package_name": "com.example.treepy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "282402832864-ke5np3msq5gjc3n6sdcn4l4nrq91vpi2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBL2xh2WCart4zh1zzPHPRO_LJ0oPHGkSM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "282402832864-ke5np3msq5gjc3n6sdcn4l4nrq91vpi2.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "282402832864-6qei8a4k0umvbfq7nhs6d2rcsffv73dv.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.treepy"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
