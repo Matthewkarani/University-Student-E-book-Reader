@@ -119,22 +119,26 @@ class _uploadNotesState extends State<uploadNotes> {
           children: [
             if(pickedFile != null)
               Expanded(
-                  child: Container(
-                color: Colors.blue[100],
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        children: [
-                          //google how to display a preview of a video
-                          Image.asset('assets/images/pdf_Icon.png',),
-                          SizedBox(height: 5,),
-                          Text(pickedFile!.name),
-                        ],
-                      ),
-                    )
-                     ,)
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      height: 100,
+                      width: 200,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          children: [
+                            //google how to display a preview of a video
+                            Image.asset('assets/images/pdf_Icon.png',),
+                            SizedBox(height: 5,),
+                            Text(pickedFile!.name),
+                          ],
+                        ),
+                      )
+                       ,),
+                  )
               ),
-            SizedBox(height: 20,),
+            SizedBox(height: 10,),
             ElevatedButton(
                 onPressed: selectFile,
                 child: Text('Select File')),
