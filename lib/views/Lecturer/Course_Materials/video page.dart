@@ -41,18 +41,18 @@ class _VideoPageState extends State<VideoPage> {
     await _videoPlayerController.setLooping(true);
     //Play the video.
     await _videoPlayerController.play();
-    await _videoPlayerController.dispose();
+
   }
 // Create a storage reference from our app
   final storageRef = FirebaseStorage.instance.ref();
 
   Future uploadToStorage() async {
     final file = File(widget.filePath);
+    await _videoPlayerController.dispose();
     final route = MaterialPageRoute(
       fullscreenDialog: true,
       builder: (_) => UploadVideoToFirebase(filePath: file.path),
     );
-    dispose();
     Navigator.push(context, route);
 
   }

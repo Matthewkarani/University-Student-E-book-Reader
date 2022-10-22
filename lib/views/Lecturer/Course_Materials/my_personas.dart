@@ -50,7 +50,10 @@ class _mypersonasState extends State<mypersonas> {
     return Scaffold(
       appBar: AppBar(
         actions: [
-          Icon(Icons.more_horiz)
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Icon(Icons.more_horiz),
+          )
         ],
         centerTitle: true,
         title: Text('My Personas',style:
@@ -70,13 +73,19 @@ class _mypersonasState extends State<mypersonas> {
 
                       return ListTile(
 
-                        title: Center(child: Text(snapshot.data[index].data()["Persona_title"])),
-                        subtitle: MaterialButton(
-                          onPressed: GoToPersonaDetails,
+                        style: ListTileStyle.list,
+                        selectedTileColor: Colors.grey,
+
+                       minVerticalPadding: 10,
+
+                        title: Text(snapshot.data[index].data()["Persona_title"]),
+                        subtitle:  GestureDetector(
+                          onTap: GoToPersonaDetails,
                           child: Text('See Details', style:
                           TextStyle(color: Colors.blue),
                           ),
                         ),
+
                         trailing: MaterialButton(
                           color: customBrown2,
                           shape: RoundedRectangleBorder(

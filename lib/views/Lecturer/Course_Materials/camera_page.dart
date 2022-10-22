@@ -80,29 +80,25 @@ class _CameraPageState extends State<CameraPage> {
           leading: BackButton(),
         ),
         body: SafeArea(
-          child: Stack(
-            children: [
+          child: Center(
+            child: Stack(
+              fit: StackFit.expand,
+              children: [
+
+                CameraPreview(_cameraController),
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(25),
                   child: Align(
-                    alignment: Alignment.topLeft,
-                    child:Icon(Icons.arrow_back_rounded,
-                      color: Colors.white,),
+                    alignment: Alignment.bottomCenter,
+                    child: FloatingActionButton(
+                      backgroundColor: Colors.red,
+                      child: Icon(_isRecording ? Icons.stop : Icons.circle),
+                      onPressed: () => _recordVideo(),
+                    ),
                   ),
                 ),
-              CameraPreview(_cameraController),
-              Padding(
-                padding: const EdgeInsets.all(25),
-                child: Align(
-                  alignment: Alignment.bottomCenter,
-                  child: FloatingActionButton(
-                    backgroundColor: Colors.red,
-                    child: Icon(_isRecording ? Icons.stop : Icons.circle),
-                    onPressed: () => _recordVideo(),
-                  ),
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       );

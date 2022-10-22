@@ -54,9 +54,18 @@ class _TopicsList extends State<TopicsList> {
               mainAxisAlignment: MainAxisAlignment.start,
             children: [
               ListTile(
+                trailing:MaterialButton(
+          color: customBrown2,
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20)),
+            child: Text('Open',style:
+            TextStyle(color: Colors.white),),
+            onPressed:ToTopicPrimary ,
+          ),
                   title :Text('Topic 1',
                   style: TextStyle(fontSize: 22),),
-                  onTap: ToTopicPrimary),
+                  onTap: (){},
+              )
 
             ]
           ),
