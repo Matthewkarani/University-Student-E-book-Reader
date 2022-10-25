@@ -60,10 +60,8 @@ await FirebaseFirestore.instance
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.white,
         centerTitle: true,
         title: Text('Good ' + greeting() , style: TextStyle(
-        color: Colors.black
         ),),
       ),
       body: SafeArea(

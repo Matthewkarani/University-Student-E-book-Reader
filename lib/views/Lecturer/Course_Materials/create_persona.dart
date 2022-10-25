@@ -11,7 +11,7 @@ import 'package:treepy/views/Lecturer/Course_Materials/my_personas.dart';
 
 
 import '../../../app_styles.dart';
-import '../Course_Materials/Persona Materials.dart';
+import 'Persona Materials.dart';
 
 class createPersona extends StatefulWidget {
   const createPersona({Key? key}) : super(key: key);
@@ -50,6 +50,14 @@ class _createPersonaState extends State<createPersona> {
 
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: BackButton(),
+        title: Text('Create New Persona',
+          style:
+          GoogleFonts.barlowCondensed(fontSize: 40),
+        ),
+        centerTitle: true,
+      ),
       body: SafeArea(
         child:SingleChildScrollView(
           child: Form(
@@ -57,14 +65,9 @@ class _createPersonaState extends State<createPersona> {
             child: Column(
             children: [
               SizedBox(height:10),
-              Center(
-                child: Text('Create New Persona',
-                  style:
-                  GoogleFonts.barlowCondensed(fontSize: 40),
-                ),
-              ),
+
                 //Persona Title
-              SizedBox(height:30),
+
                 Align(
                   alignment: Alignment.topLeft,
                   child: Padding(

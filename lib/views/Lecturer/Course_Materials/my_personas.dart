@@ -7,6 +7,8 @@ import 'package:treepy/app_styles.dart';
 import 'package:treepy/views/Lecturer/Course_Materials/persona_details.dart';
 import 'package:treepy/views/Lecturer/Course_Materials/topic_list_page.dart';
 
+import 'create_persona.dart';
+
 class mypersonas extends StatefulWidget {
   const mypersonas({Key? key}) : super(key: key);
 
@@ -18,6 +20,7 @@ class mypersonas extends StatefulWidget {
 class _mypersonasState extends State<mypersonas> {
 
   late Future _data;
+  late String title;
   final auth = FirebaseAuth.instance;
    Future getPersonas() async{
     var Firestore = FirebaseFirestore.instance;
@@ -25,13 +28,11 @@ class _mypersonasState extends State<mypersonas> {
         .collection('my_personas').get();
 
      return qn.docs;
+
+
    }
-  void GoToPersonaDetails(){
-     Navigator.push
-       (context,
-         MaterialPageRoute(builder: (context)=>
-     personaDetails()));
-  }
+
+
 
   void navigateToTopics(){
      Navigator.push(
@@ -39,6 +40,11 @@ class _mypersonasState extends State<mypersonas> {
        MaterialPageRoute(builder: (context) =>TopicsList())
      );
 
+  }
+  ToAddPersonaPage(){
+    Navigator.push(context,
+        MaterialPageRoute(
+            builder: (context)=> createPersona()));
   }
   void initState(){
      super.initState();
@@ -48,6 +54,12 @@ class _mypersonasState extends State<mypersonas> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        floatingActionButton:FloatingActionButton(
+          child: Icon(Icons.add, semanticLabel: 'Add Topic',),
+          onPressed: (){
+            ToAddPersonaPage();
+          },
+        ) ,
       appBar: AppBar(
         actions: [
           Padding(
@@ -80,7 +92,14 @@ class _mypersonasState extends State<mypersonas> {
 
                         title: Text(snapshot.data[index].data()["Persona_title"]),
                         subtitle:  GestureDetector(
-                          onTap: GoToPersonaDetails,
+                          onTap: (){
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) =>
+                                  personaDetails(title:snapshot.data[index].data()["Persona_title"] ) )
+                            );
+
+                          },
                           child: Text('See Details', style:
                           TextStyle(color: Colors.blue),
                           ),

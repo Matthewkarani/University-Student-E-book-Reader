@@ -7,7 +7,7 @@ import '../../app_styles.dart';
 import 'Course_Materials/course_materials_landing_page.dart';
 import 'Course_Materials/my_personas.dart';
 import 'Home/Home_lec.dart';
-import 'Home/create_persona.dart';
+import 'Course_Materials/create_persona.dart';
 import 'Profile/profile_page.dart';
 
 class LecBtmNav extends StatefulWidget {
@@ -23,7 +23,7 @@ class _LecBtmNav extends State<LecBtmNav> {
 
   List<Widget> _buildScreens() {
     return [
-      createPersona(),
+      LecHome(),
       mypersonas(),
       LecReport(),
       LecsProfile()
