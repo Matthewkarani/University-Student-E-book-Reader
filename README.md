@@ -1,12 +1,11 @@
-# treepryj6..665ii4
-Ff
+
 A new Flutter project.
 
 ## Getting Started
 
 This project is a starting point for a Flutter application.
 
-This project is b5asically an e-reader application for university students whose purpose is to help
+This project is basically an e-reader application for university students whose purpose is to help
 university students develop better reading habits of their course materials. It has two users a lecturer and a student
 The lecturer creates courses that they are teaching their students and shares the key with their students.They then upload
 course materials i.e notes and summary videos that the students can access. When then the students access the notes that the 
