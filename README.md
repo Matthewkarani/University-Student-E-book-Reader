@@ -6,12 +6,12 @@ A new Flutter project.
 This project is a starting point for a Flutter application.
 
 This project is basically an e-reader application for university students whose purpose is to help
-university students develop better reading habits of their course materials. It has two users a lecturer and a student
-The lecturer creates courses that they are teaching their students and shares the key with their students.They then upload
-course materials i.e notes and summary videos that the students can access. When then the students access the notes that the 
-lecturer uploads they can add a reading schedule for the times that they want to read the notes. Reading will be done in
-short intervals of 10 to 30minutes at a time. Students will receive notifications to read at their specified times.Students can then 
-view reports of the amount of time they spent reading over any given period of time. Lecturers can also view reading reports of the
+university students develop better reading habits of their course materials. It has two users a lecturer and a student.
+The lecturer creates courses that they are teaching their students and shares the enrollment key with their students.They then upload
+course materials i.e notes and summary videos that the students can access. When then the students accesses the notes that the 
+lecturer uploads they can add a reading schedules to them for the times that they want to read the notes. Reading will be done in
+short intervals of 10 to 30 minutes at a time per reading session. Students will receive notifications to read at the specified times.
+Students can then view reports of the amount of time they spent reading over any given period of time. Lecturers can also view reading reports of the
 Students enrolled to their various courses.
 
 Project is still in progress.
