@@ -34,28 +34,22 @@ class _mypersonasState extends State<mypersonas> {
 
 
 
-  void navigateToTopics(){
-     Navigator.push(
-       context,
-       MaterialPageRoute(builder: (context) =>TopicsList())
-     );
-
-  }
   ToAddPersonaPage(){
     Navigator.push(context,
         MaterialPageRoute(
             builder: (context)=> createPersona()));
   }
   void initState(){
-     super.initState();
-     _data = getPersonas();
+    _data = getPersonas();
+    super.initState();
+
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         floatingActionButton:FloatingActionButton(
-          child: Icon(Icons.add, semanticLabel: 'Add Topic',),
+          child: Icon(Icons.add, semanticLabel: 'Add Persona',),
           onPressed: (){
             ToAddPersonaPage();
           },
@@ -111,18 +105,30 @@ class _mypersonasState extends State<mypersonas> {
                               borderRadius: BorderRadius.circular(20)),
                           child: Text('Open',style:
                           TextStyle(color: Colors.white),),
-                          onPressed:navigateToTopics ,
+                          onPressed:(){
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(builder:
+                                    (context) =>TopicsList(title: snapshot.data[index].data()["Course_Title"]))
+                            );
+                          },
                         ),
 
                       );
 
                     });
-              }else{
+              }else if(snapshot.data == null) {
+                  return
+                    Center(child: CircularProgressIndicator());
+
+                } else{
+                   //Find a way of displaying this
                   return Center(
-                    child: Text('No personas created',style: TextStyle(
-                        color:Colors.black ),),
-                  );
+
+                      child:Text('No topics Created'));
+
                 }
+
 
     }
                 //itembulder takes in a function that builds the list .

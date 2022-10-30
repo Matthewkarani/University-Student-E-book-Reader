@@ -37,8 +37,6 @@ class _LecHomeState extends State<LecHome> {
 
   getuserName() async{
 
-
-
   }
   final auth = FirebaseAuth.instance;
   getPersonaTitle() async{

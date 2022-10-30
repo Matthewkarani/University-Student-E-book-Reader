@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:treepy/model/rertrieve_persona_data.dart';
-import 'package:treepy/test.dart';
 import 'package:treepy/views/Lecturer/Course_Materials/my_personas.dart';
 import 'package:treepy/views/Lecturer/Course_Materials/topic_content_page.dart';
 import 'package:treepy/views/Lecturer/Course_Materials/topic_list_page.dart';
 import 'package:treepy/views/Lecturer/Course_Materials/camera_page.dart';
 import 'package:treepy/views/Student/Materials/PdfReaderPage.dart';
 import 'package:treepy/views/Student/Materials/ReadingReports.dart';
+import 'package:treepy/views/Student/Materials/mypersonas.dart';
 import 'package:treepy/views/Student/Profile/stud_profile.dart';
 import 'package:treepy/views/auth/main_page.dart';
 import 'package:treepy/views/auth/register_page.dart';
@@ -62,7 +62,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+        routes: {
 
+          // When navigating to the "/second" route, build the SecondScreen widget.
+          '/totopicsContent': (context) => const TopicContent(Topictitle: '',),
+        },
       debugShowCheckedModeBanner: false,
       title: 'Treepy',
       theme: ThemeData(
@@ -79,7 +83,8 @@ class MyApp extends StatelessWidget {
 
 
       ),
-        home: //mypersonas()//TopicContent()//mypersonas()
+        home:
+        //studPersonas()//mypersonas()//TopicContent()//mypersonas()
       // addTopic()
       // ReadingPage()
       //AddNotes()
@@ -87,9 +92,10 @@ class MyApp extends StatelessWidget {
         //LecsHome()
       //createPersona()
       //StdLanding()
-     seenOnboard == true ? MainPage() : OnBoardingPage()
+    seenOnboard == true ? MainPage() : OnBoardingPage()
      );
   }
 }
+
 
 

@@ -40,9 +40,8 @@ class _VideoPageState extends State<UploadVideoToFirebase> {
 
     //wait for the upload task to get completed
     final snapshot = await uploadTask!.whenComplete(() => {
-      Navigator.push(context,
-          MaterialPageRoute(
-              builder: (context)=> TopicContent())),
+      Navigator.pushNamed(context,
+          '/totopicsContent'),
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text("Upload Successful"),
       ))

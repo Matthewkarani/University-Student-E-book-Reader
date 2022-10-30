@@ -18,8 +18,8 @@ class _CameraPageState extends State<CameraPage> {
   late CameraController _cameraController;
 
   backToTopics(){
-    Navigator.pop(context,
-        MaterialPageRoute(builder: (context)=>TopicContent()));
+    Navigator.pushNamed(context,
+        '/totopicsContent');
   }
 
   @override

@@ -181,6 +181,9 @@ class _createPersonaState extends State<createPersona> {
                     Future savetofirebase() async {
                       final User? user = auth.currentUser;
                       final uid = user?.uid;
+                      String? lecFirstName;
+                      String? lecLastName;
+
 
                       persona_title = _personaTitleController.text.trim();
                       course_title =  _courseTitleController.text.trim();
@@ -193,17 +196,43 @@ class _createPersonaState extends State<createPersona> {
                       Persona_Description: persona_description,
                       Persona_key:persona_key ,
                       IsPersona: true,
+                          lecId: auth.currentUser?.uid
                       );
 
-                  final docRef = FirebaseFirestore.instance
-                      .collection("Persona").doc(uid).
-                  collection("my_personas")
-                      .withConverter(
-                    fromFirestore: Persona.fromFirestore,
-                    toFirestore: (Persona persona, options) => persona.toFirestore(),
-                  )
-                      .doc(persona_title);
-                  await docRef.set(persona);
+
+                     FirebaseFirestore.instance.collection('users').doc(uid).get().then((s) =>
+                     lecFirstName = s.data()!['first name'],
+                     );
+
+
+                     var lecDetails = <String,dynamic>{
+                        'uid' : uid,
+                        'isLec' : true,
+                        'first name': lecFirstName,
+
+                      };
+
+                      FirebaseFirestore.instance.collection("Persona").doc(uid).set(lecDetails);
+
+
+
+                      //do a read of the data base, where the uid field mateches the lecs uid
+                      //get the document id.
+
+
+                      FirebaseFirestore.instance
+                          .collection("Persona").doc(uid).
+                      collection("my_personas")
+                          .withConverter(
+                        fromFirestore: Persona.fromFirestore,
+                        toFirestore: (Persona persona, options) => persona.toFirestore(),)
+                          .doc(persona_title).set(persona);
+
+
+
+                      //create persona subcollection
+
+
 
                       Fluttertoast.showToast(
                           msg: "Persona Created Successfully",

@@ -5,6 +5,7 @@ class Persona {
   late final String? Course_Title;
   late final String? Persona_Description;
   late final String? Persona_key;
+  late final String? lecId;
   late final bool? IsPersona;
 
   Persona({
@@ -12,6 +13,7 @@ class Persona {
     this.Course_Title,
     this.Persona_Description,
     this.Persona_key,
+    this.lecId,
     this.IsPersona
 
   });
@@ -26,6 +28,7 @@ class Persona {
       Persona_Description: data?['Persona_Description'],
       IsPersona: data?['IsPersona'],
       Persona_key: data?['Persona_key'],
+      lecId: data?['lecId'],
 
     );
   }
@@ -36,6 +39,7 @@ class Persona {
       if (Persona_Description != null) "Persona_Description": Persona_Description,
       if (IsPersona != null) "IsPersona": IsPersona,
       if (Persona_key != null) "Persona_key": Persona_key,
+      if (lecId != null) "lecId": lecId,
 
     };
   }

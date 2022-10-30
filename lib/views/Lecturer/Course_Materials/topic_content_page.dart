@@ -1,15 +1,19 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:treepy/app_styles.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:treepy/views/Lecturer/Course_Materials/camera_page.dart';
+import 'package:treepy/views/Lecturer/Course_Materials/persona_details.dart';
 import 'package:treepy/views/Lecturer/Course_Materials/uploadNotes.dart';
 
+import 'UpdateTopicPage.dart';
 import 'topic_list_page.dart';
 
 class TopicContent extends StatefulWidget {
-  const TopicContent({Key? key}) : super(key: key);
+  final String Topictitle;
+  const TopicContent({Key? key,  required this.Topictitle}) : super(key: key);
 
   @override
   State<TopicContent> createState() => _TopicContentState();
@@ -18,6 +22,24 @@ class TopicContent extends StatefulWidget {
 class _TopicContentState extends State<TopicContent> {
 
 
+
+  late String Topictitle;
+  @override
+  void initState() {
+    Topictitle = widget.Topictitle;
+
+    super.initState();
+  }
+
+  Future DeletePersona() async {
+
+
+    await FirebaseFirestore.instance.collection("Topics").doc(Topictitle)
+        .collection('My_Topics').doc(Topictitle).delete().then(
+          (doc) => print("Document deleted"),
+      onError: (e) => print("Error updating document $e"),
+    );
+  }
 
   GoToCameraPage(){
     Navigator.push(
@@ -30,14 +52,67 @@ class _TopicContentState extends State<TopicContent> {
     Navigator.push(
         context,
         MaterialPageRoute(builder: (context)=> uploadNotes()));
+  }
 
-
+  UpdatePersonaDetailsPage() {
+    Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context)=>UpdateTopic()));
 
   }
+
+  showMyDialog() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Are you sure'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children:  <Widget>[
+                Text('Do you want to delete the ' + Topictitle + ' topic?'),
+
+
+              ],
+            ),
+          ),
+          actions: <Widget>[
+
+            TextButton(
+              child: const Text('No'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+
+            SizedBox(height: 10,),
+
+            TextButton(
+                child: const Text('Yes'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context)=>TopicsList(title: '')));
+                  DeletePersona();
+
+                }
+            )
+          ],
+        );
+      },
+    );
+  }
+
+
+
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       //consider adding two floating action buttons , if possible,
       // one for adding notes, the other for adding videos
       floatingActionButton: SpeedDial(
@@ -65,8 +140,34 @@ class _TopicContentState extends State<TopicContent> {
         ],
       ),
       appBar: AppBar(
+        actions: <Widget>[
+          // This button presents popup menu items.
+          PopupMenuButton<Menu>(
+            // Callback that sets the selected popup menu item.
+              onSelected: (Menu item) {
+                setState(() {
+                  if (item == Menu.itemOne) {
+                    UpdatePersonaDetailsPage();
+                  } else if (item == Menu.itemTwo) {
+                    showMyDialog();
+                  }
+
+                });
+              },
+              itemBuilder: (BuildContext context) => <PopupMenuEntry<Menu>>[
+                const PopupMenuItem<Menu>(
+                  value: Menu.itemOne,
+                  child: Text('Edit Topic Details'),
+                ),
+                const PopupMenuItem<Menu>(
+                  value: Menu.itemTwo,
+                  child: Text('Delete Topic'),
+                ),
+
+              ]),
+        ],
         leading: BackButton(),
-        title: Text('Topic Number',
+        title: Text(Topictitle + ' Content',
           style: TextStyle(fontSize: 22
           ),),
         centerTitle: true,

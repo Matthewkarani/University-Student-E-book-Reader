@@ -3,6 +3,8 @@ import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import '../../app_styles.dart';
+
 class ForgotPasswordPage extends StatefulWidget {
   const ForgotPasswordPage({Key? key}) : super(key: key);
 
@@ -43,7 +45,6 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.brown[400],
         elevation: 0,
       ),
 
@@ -78,7 +79,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
           MaterialButton(onPressed: passwordReset,
           child: Text('Reset Password',style:
           TextStyle(color: Colors.white),),
-            color: Colors.brown[300],
+            color: customBrown2,
           ),
         ],
       ),
