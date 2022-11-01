@@ -7,10 +7,10 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:treepy/model/persona_model.dart';
-import 'package:treepy/views/Lecturer/Course_Materials/my_personas.dart';
+import 'package:treepy/views/Lecturer/Course_Materials/Personas/lec_persona_list.dart';
 
 
-import '../../../app_styles.dart';
+import '../../../../app_styles.dart';
 import 'Persona Materials.dart';
 
 class createPersona extends StatefulWidget {
@@ -54,7 +54,7 @@ class _createPersonaState extends State<createPersona> {
         leading: BackButton(),
         title: Text('Create New Persona',
           style:
-          GoogleFonts.barlowCondensed(fontSize: 40),
+          GoogleFonts.barlowCondensed(fontSize: 30),
         ),
         centerTitle: true,
       ),
@@ -196,7 +196,8 @@ class _createPersonaState extends State<createPersona> {
                       Persona_Description: persona_description,
                       Persona_key:persona_key ,
                       IsPersona: true,
-                          lecId: auth.currentUser?.uid
+                          lecId: auth.currentUser?.uid,
+                          personaID: persona_title
                       );
 
 

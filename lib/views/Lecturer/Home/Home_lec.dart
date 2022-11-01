@@ -8,7 +8,7 @@ import 'package:treepy/Notifiers/Persona_Notifier.dart';
 
 import '../../../../model/Pesona_card_model_data.dart';
 import '../../../../model/persona_model.dart';
-import '../Course_Materials/Persona Materials.dart';
+import '../Course_Materials/Personas/Persona Materials.dart';
 
 class LecHome extends StatefulWidget {
   const LecHome({Key? key}) : super(key: key);
@@ -19,6 +19,8 @@ class LecHome extends StatefulWidget {
 
 class _LecHomeState extends State<LecHome> {
   get persona => null;
+
+
 
  late String UserName;
   late final String Title;
@@ -36,7 +38,33 @@ class _LecHomeState extends State<LecHome> {
   }
 
   getuserName() async{
+    var auth = FirebaseAuth.instance;
+    var uid = auth.currentUser?.uid;
+    var db = FirebaseFirestore.instance;
+    String? firstName;
+    String? lastName;
+    String? personakey;
+    String? Course_Title;
+    String? Persona_Description;
+    String? Persona_key;
+    String? Persona_title;
+    String? lecID;
+    String? personaId;
 
+    db.collection("Persona")
+        .doc(lecID)
+        .collection('my_personas')
+        .where("personaID", isEqualTo: '123456')
+        .get().then((QuerySnapshot s) => s.docs.forEach((e) {
+      Course_Title = e["Course_Title"];
+      Persona_Description = e["Persona_Description"];
+      Persona_key = e["Persona_key"];
+      Persona_title = e["Persona_title"];
+
+
+    }));
+
+    print(Persona_title);
   }
   final auth = FirebaseAuth.instance;
   getPersonaTitle() async{
@@ -64,7 +92,12 @@ await FirebaseFirestore.instance
       ),
       body: SafeArea(
           child: Center
-            (child: Text('Lecturer'))
+            (
+              child: MaterialButton(
+                child: Text('test'),
+            onPressed: getuserName,
+
+          ))
 
       ),
     );

@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../../app_styles.dart';
-import '../../../model/persona_model.dart';
-import 'my_personas.dart';
+import '../../../../app_styles.dart';
+import '../../../../model/persona_model.dart';
+import 'lec_persona_list.dart';
 
 class UpdatePerona extends StatefulWidget {
   late String title;

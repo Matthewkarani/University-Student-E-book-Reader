@@ -55,6 +55,7 @@ dependencies:
   advance_pdf_viewer: ^2.0.1
   file_picker: ^5.2.2
   video_thumbnail: ^0.5.3
+  syncfusion_flutter_pdfviewer: ^20.3.52
 
 
   #The above plugin is used to upload the file in the background

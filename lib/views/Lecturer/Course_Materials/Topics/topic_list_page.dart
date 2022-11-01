@@ -5,7 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:treepy/app_styles.dart';
-import 'package:treepy/views/Lecturer/Course_Materials/topic_content_page.dart';
+import 'package:treepy/views/Lecturer/Course_Materials/Topics/topic_content_page.dart';
 
 import 'addTopic.dart';
 
@@ -95,7 +95,7 @@ class _TopicsList extends State<TopicsList> {
                               Navigator.push(context,
                                   MaterialPageRoute(builder:
                                       (context) =>
-                              TopicContent(Topictitle: snapshot.data[index].data()["topic_title"]))
+                              TopicContent(Topictitle: snapshot.data[index].data()["topic_title"],Persona_title: title))
                               );
                             }
 

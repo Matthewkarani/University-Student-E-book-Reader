@@ -1,14 +1,18 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:treepy/views/Lecturer/Course_Materials/topic_content_page.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:treepy/views/Lecturer/Course_Materials/Topics/topic_content_page.dart';
 
-import '../../../app_styles.dart';
+import '../../../../app_styles.dart';
 
 class uploadNotes extends StatefulWidget {
-  const uploadNotes({Key? key}) : super(key: key);
+  final String Personatitle;
+  const uploadNotes({Key? key, required this.Personatitle}) : super(key: key);
 
   @override
   State<uploadNotes> createState() => _uploadNotesState();
@@ -17,6 +21,13 @@ class uploadNotes extends StatefulWidget {
 class _uploadNotesState extends State<uploadNotes> {
   PlatformFile? pickedFile;
   UploadTask? uploadTask;
+  late String Personatitle;
+
+  @override
+  void initState() {
+    Personatitle = widget.Personatitle;
+    super.initState();
+  }
 
   Future selectFile() async{
     final result = await FilePicker.platform.pickFiles(type: FileType.custom,
@@ -30,46 +41,74 @@ class _uploadNotesState extends State<uploadNotes> {
     });
   }
 
-  Future uploadFile() async{
+
+  uploadtoFirebase()async {
+
+  }
+
+
+  Future uploadFile() async {
+    var auth = FirebaseAuth.instance;
+    var uid = auth.currentUser?.uid;
+    var db = FirebaseFirestore.instance;
+    String? Persona_key;
+
+    Persona_key = Personatitle;
     //Define where you want to store the file in firebase
     // (we include the name of the picked file.
     final path = 'files/${pickedFile!.name}';
     //simply Convert the picked file to a file object
     final file = File(pickedFile!.path!);
-    
+
     //Upload the file to firebase using the firebase storage package
     final ref = FirebaseStorage.instance.ref().child(path);
 
 
     setState(() {
       uploadTask = ref.putFile(file);
-
     });
 
     //wait for the upload task to get completed
-    final snapshot = await uploadTask!.whenComplete(() => {
-    Navigator.pushNamed(context,
-        '/totopicsContent')
-      ,
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-    content: Text("Upload Successful"),
-    ))
-    });
+    final snapshot = await uploadTask?.whenComplete(() => {
+    }
+
+      //On completion, get the download url.
 
 
-    
-    //On completion, get the download url.
-    final urlDownload = await snapshot.ref.getDownloadURL();
+    );
+    final urlDownload = await snapshot?.ref.getDownloadURL();
     print('Download Link : $urlDownload');
 
-    //Store the files in firestore
+    db.collectionGroup("my_personas")
+        .where("Persona_key", isEqualTo: Persona_key)
+        .get().then((QuerySnapshot s) =>
+        s.docs.forEach((e) {
+          //create a variable to carry the video donload link
+          var notesDownloadlink = <String, dynamic>{
+            'notesLink': [urlDownload]
+          };
 
+          //update persona Document
+          db.collection('Persona').
+          doc(uid)
+              .collection('my_personas')
+              .doc(Persona_key)
+              .update(notesDownloadlink);
+
+          //google how to implement routes
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) =>
+                  TopicContent(Topictitle: '', Persona_title: '')));
+
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text("Upload Successful"),
+          ));
+        }));
 
     //after the upload task is finished set the upload task to null
     setState(() {
       uploadTask = null;
     });
-
 
 
 
@@ -159,3 +198,5 @@ class _uploadNotesState extends State<uploadNotes> {
 
   }
 }
+
+

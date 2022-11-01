@@ -4,13 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:treepy/model/rertrieve_persona_data.dart';
-import 'package:treepy/views/Lecturer/Course_Materials/my_personas.dart';
-import 'package:treepy/views/Lecturer/Course_Materials/topic_content_page.dart';
-import 'package:treepy/views/Lecturer/Course_Materials/topic_list_page.dart';
-import 'package:treepy/views/Lecturer/Course_Materials/camera_page.dart';
-import 'package:treepy/views/Student/Materials/PdfReaderPage.dart';
-import 'package:treepy/views/Student/Materials/ReadingReports.dart';
-import 'package:treepy/views/Student/Materials/mypersonas.dart';
+import 'package:treepy/views/Lecturer/Course_Materials/Personas/lec_persona_list.dart';
+import 'package:treepy/views/Lecturer/Course_Materials/Topics/topic_content_page.dart';
+import 'package:treepy/views/Lecturer/Course_Materials/Topics/topic_list_page.dart';
+import 'package:treepy/views/Lecturer/Course_Materials/Uploads/camera_page.dart';
+import 'package:treepy/views/Student/Materials/Reports/ReadingReports.dart';
+import 'package:treepy/views/Student/Home/mypersonas.dart';
 import 'package:treepy/views/Student/Profile/stud_profile.dart';
 import 'package:treepy/views/auth/main_page.dart';
 import 'package:treepy/views/auth/register_page.dart';
@@ -65,7 +64,8 @@ class MyApp extends StatelessWidget {
         routes: {
 
           // When navigating to the "/second" route, build the SecondScreen widget.
-          '/totopicsContent': (context) => const TopicContent(Topictitle: '',),
+         '/totopicsContent': (context) => const TopicContent(Topictitle: '',
+             Persona_title: '' ),
         },
       debugShowCheckedModeBanner: false,
       title: 'Treepy',

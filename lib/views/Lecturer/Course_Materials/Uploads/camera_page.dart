@@ -1,12 +1,13 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:treepy/views/Lecturer/Course_Materials/topic_content_page.dart';
-import 'package:treepy/views/Lecturer/Course_Materials/video%20page.dart';
+import 'package:treepy/views/Lecturer/Course_Materials/Topics/topic_content_page.dart';
+import 'package:treepy/views/Lecturer/Course_Materials/Uploads/video%20page.dart';
 
 
 
 class CameraPage extends StatefulWidget {
-  const CameraPage({Key? key}) : super(key: key);
+  final String Persona_title;
+  const CameraPage({Key? key,  required this.Persona_title,}) : super(key: key);
 
   @override
   _CameraPageState createState() => _CameraPageState();
@@ -16,6 +17,8 @@ class _CameraPageState extends State<CameraPage> {
   bool _isLoading = true;
   bool _isRecording = false;
   late CameraController _cameraController;
+  late String Personatitle;
+
 
   backToTopics(){
     Navigator.pushNamed(context,
@@ -25,6 +28,7 @@ class _CameraPageState extends State<CameraPage> {
   @override
   void initState() {
     _initCamera();
+    Personatitle = widget.Persona_title;
     super.initState();
   }
 
@@ -50,7 +54,7 @@ class _CameraPageState extends State<CameraPage> {
       setState(() => _isRecording = false);
       final route = MaterialPageRoute(
         fullscreenDialog: true,
-        builder: (_) => VideoPage(filePath: file.path),
+        builder: (_) => VideoPage(filePath: file.path,Personatitle:Personatitle),
       );
       Navigator.push(context, route);
     } else {

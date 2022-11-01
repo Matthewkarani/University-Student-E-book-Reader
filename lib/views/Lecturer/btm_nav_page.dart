@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
-import 'package:treepy/views/Lecturer/report_pages/home_reports_lec.dart';
+import 'package:treepy/views/Lecturer/report_pages/lec_reports_home.dart';
 
 import '../../app_styles.dart';
-import 'Course_Materials/course_materials_landing_page.dart';
-import 'Course_Materials/my_personas.dart';
+import 'Course_Materials/Topics/topic_content_landingpage.dart';
+import 'Course_Materials/Personas/lec_persona_list.dart';
 import 'Home/Home_lec.dart';
-import 'Course_Materials/create_persona.dart';
+import 'Course_Materials/Personas/create_persona.dart';
 import 'Profile/profile_page.dart';
 
 class LecBtmNav extends StatefulWidget {

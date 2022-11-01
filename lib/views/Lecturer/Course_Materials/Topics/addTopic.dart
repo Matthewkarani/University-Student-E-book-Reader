@@ -8,13 +8,13 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:treepy/model/persona_model.dart';
-import 'package:treepy/views/Lecturer/Course_Materials/my_personas.dart';
-import 'package:treepy/views/Lecturer/Course_Materials/topic_list_page.dart';
+import 'package:treepy/views/Lecturer/Course_Materials/Personas/lec_persona_list.dart';
+import 'package:treepy/views/Lecturer/Course_Materials/Topics/topic_list_page.dart';
 
 
-import '../../../app_styles.dart';
-import '../../../model/Topic_model.dart';
-import 'Persona Materials.dart';
+import '../../../../app_styles.dart';
+import '../../../../model/Topic_model.dart';
+import '../Personas/Persona Materials.dart';
 
 class addTopic extends StatefulWidget {
   final String title;

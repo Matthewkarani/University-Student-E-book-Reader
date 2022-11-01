@@ -3,22 +3,31 @@ import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:treepy/views/Lecturer/Course_Materials/topic_content_page.dart';
+import 'package:treepy/views/Lecturer/Course_Materials/Topics/topic_content_page.dart';
 import 'package:video_player/video_player.dart';
 
 import 'UploadVideoToFirebase.dart';
 
 class VideoPage extends StatefulWidget {
   final String filePath;
+  final String Personatitle;
 
 
-  const VideoPage({Key? key, required this.filePath}) : super(key: key);
+  const VideoPage({Key? key, required this.filePath, required this.Personatitle}) : super(key: key);
 
   @override
   _VideoPageState createState() => _VideoPageState();
 }
 
 class _VideoPageState extends State<VideoPage> {
+
+
+  late String Personatitle;
+  @override
+  void initState() {
+    Personatitle = widget.Personatitle;
+    super.initState();
+  }
   //add a new _videoPlayerController variable.
   late VideoPlayerController _videoPlayerController;
   UploadTask? uploadTask;
@@ -51,7 +60,7 @@ class _VideoPageState extends State<VideoPage> {
     await _videoPlayerController.dispose();
     final route = MaterialPageRoute(
       fullscreenDialog: true,
-      builder: (_) => UploadVideoToFirebase(filePath: file.path),
+      builder: (_) => UploadVideoToFirebase(filePath: file.path,Personatitle:Personatitle),
     );
     Navigator.push(context, route);
 

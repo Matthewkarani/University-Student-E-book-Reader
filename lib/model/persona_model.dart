@@ -7,6 +7,7 @@ class Persona {
   late final String? Persona_key;
   late final String? lecId;
   late final bool? IsPersona;
+  late final String? personaID;
 
   Persona({
     this.Persona_title,
@@ -14,7 +15,8 @@ class Persona {
     this.Persona_Description,
     this.Persona_key,
     this.lecId,
-    this.IsPersona
+    this.IsPersona,
+    this.personaID
 
   });
   factory Persona.fromFirestore(
@@ -29,6 +31,7 @@ class Persona {
       IsPersona: data?['IsPersona'],
       Persona_key: data?['Persona_key'],
       lecId: data?['lecId'],
+      personaID: data?['personaID'],
 
     );
   }
@@ -40,6 +43,8 @@ class Persona {
       if (IsPersona != null) "IsPersona": IsPersona,
       if (Persona_key != null) "Persona_key": Persona_key,
       if (lecId != null) "lecId": lecId,
+      if (personaID != null) "personaID": personaID,
+
 
     };
   }

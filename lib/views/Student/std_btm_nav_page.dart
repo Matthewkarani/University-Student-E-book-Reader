@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 import '../../app_styles.dart';
-import 'Enroll/stud_enroll_persona.dart';
+import 'Enroll/stud_enroll_to_persona.dart';
 import 'Home/stud_home_page.dart';
-import 'Materials/PdfReaderPage.dart';
+import 'Materials/Content/PdfReaderPage.dart';
+import 'Home/mypersonas.dart';
+import 'Materials/Personas/stud_persona_list.dart';
 import 'Materials/stud_persona_materials.dart';
 import 'Profile/stud_profile.dart';
 
@@ -22,7 +24,7 @@ class _StdLandingState extends State<StdLanding> {
 
   List<Widget> _buildScreens() {
     return [
-      StudHome(),
+      studPersonas(),
       ReadingPage(),
       EnrollPersona(),
       studProfile()

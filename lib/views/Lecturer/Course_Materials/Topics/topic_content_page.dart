@@ -4,16 +4,20 @@ import 'package:flutter/material.dart';
 import 'package:treepy/app_styles.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
-import 'package:treepy/views/Lecturer/Course_Materials/camera_page.dart';
-import 'package:treepy/views/Lecturer/Course_Materials/persona_details.dart';
-import 'package:treepy/views/Lecturer/Course_Materials/uploadNotes.dart';
+import 'package:treepy/views/Lecturer/Course_Materials/Uploads/camera_page.dart';
+import 'package:treepy/views/Lecturer/Course_Materials/Personas/persona_details.dart';
+import 'package:treepy/views/Lecturer/Course_Materials/Uploads/uploadNotes.dart';
 
 import 'UpdateTopicPage.dart';
 import 'topic_list_page.dart';
 
 class TopicContent extends StatefulWidget {
   final String Topictitle;
-  const TopicContent({Key? key,  required this.Topictitle}) : super(key: key);
+  final String Persona_title;
+  const TopicContent(
+      {Key? key,
+        required this.Topictitle,
+    required this.Persona_title}) : super(key: key);
 
   @override
   State<TopicContent> createState() => _TopicContentState();
@@ -24,9 +28,11 @@ class _TopicContentState extends State<TopicContent> {
 
 
   late String Topictitle;
+  late String Personatitle;
   @override
   void initState() {
     Topictitle = widget.Topictitle;
+    Personatitle = widget.Persona_title;
 
     super.initState();
   }
@@ -44,14 +50,14 @@ class _TopicContentState extends State<TopicContent> {
   GoToCameraPage(){
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context)=> CameraPage())
+      MaterialPageRoute(builder: (context)=> CameraPage(Persona_title:Personatitle,))
     );
   }
 
   Future selectFile() async{
     Navigator.push(
         context,
-        MaterialPageRoute(builder: (context)=> uploadNotes()));
+        MaterialPageRoute(builder: (context)=> uploadNotes(Personatitle:Personatitle)));
   }
 
   UpdatePersonaDetailsPage() {

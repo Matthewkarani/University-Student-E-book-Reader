@@ -4,10 +4,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter/services.dart';
-import '../../../model/persona_model.dart';
-import '../../auth/auth_helper.dart';
+import '../../../../model/persona_model.dart';
+import '../../../auth/auth_helper.dart';
 import 'UpdatePersona.dart';
-import 'my_personas.dart';
+import 'lec_persona_list.dart';
 
 enum Menu { itemOne, itemTwo, itemThree, itemFour }
 
