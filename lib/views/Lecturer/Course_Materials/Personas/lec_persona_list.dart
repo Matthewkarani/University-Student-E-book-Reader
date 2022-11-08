@@ -109,7 +109,10 @@ class _mypersonasState extends State<mypersonas> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(builder:
-                                      (context) =>TopicsList(title: snapshot.data[index].data()["Course_Title"]))
+                                      (context) =>TopicsList(
+                                        Coursetitle: snapshot.data[index].data()["Course_Title"],
+                                        Personatitle: snapshot.data[index].data()["Persona_title"],
+                                          ),)
                               );
                             },
                           ),
@@ -130,14 +133,10 @@ class _mypersonasState extends State<mypersonas> {
                 }
 
 
-              }
+              } )
             //itembulder takes in a function that builds the list .
             //The itembuilder function(), takes the build context and an index.
 
-
-
-
-          )
           ,
         )
 

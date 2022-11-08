@@ -157,7 +157,13 @@ class _stud_personaDetailsState extends State<stud_personaDetails> {
 
               ]),
         ],
-        leading: BackButton(color: Colors.white,),
+        leading: BackButton(
+          onPressed: (){
+              Navigator.push(context,
+                MaterialPageRoute(builder: (context)=>studPersonas())
+              );
+          },
+          color: Colors.white,),
         title: Text(title, style:
         TextStyle(color: Colors.white),),
         //widget.PDetails.data()!["Persona_title"] ,style:

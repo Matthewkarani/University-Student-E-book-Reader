@@ -31,23 +31,23 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  google_fonts: ^2.1.0
+  google_fonts: ^3.0.1
   shared_preferences: ^2.0.15 #to save data to device we use this to load the onboarding screen only once
-  firebase_core: ^1.22.0 
-  firebase_auth: ^3.9.0
-  cloud_firestore: ^3.5.1
+  firebase_core: ^2.1.1
+  firebase_auth: ^4.1.1
+  cloud_firestore: ^4.0.4
   dropdown_button2: ^1.8.2
   persistent_bottom_nav_bar: any
   awesome_dropdown: ^0.0.4
   camera: ^0.10.0+4
   video_player: ^2.4.7
   fluttertoast: ^8.0.9
-  firebase_storage: ^10.3.11
+  firebase_storage: ^11.0.4
   flutter_uploader:  ^3.0.0-beta.3
   provider: ^6.0.3
   checkbox_grouped: ^1.8.1
-  device_info_plus: ^5.0.5
-  package_info_plus: ^1.4.3+1
+  device_info_plus: ^8.0.0
+  package_info_plus: ^3.0.1
   google_sign_in: ^5.4.2
   intl: ^0.17.0
   iconly: ^1.0.1
@@ -55,6 +55,7 @@ dependencies:
   advance_pdf_viewer: ^2.0.1
   file_picker: ^5.2.2
   video_thumbnail: ^0.5.3
+  path_provider: ^2.0.11
   syncfusion_flutter_pdfviewer: ^20.3.52
 
 
@@ -74,6 +75,8 @@ dependencies:
   get:
 
   introduction_screen: ^3.0.1
+  video_player_web: ^2.0.12
+  file_selector: ^0.9.2+2
 
 
 

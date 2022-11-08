@@ -5,13 +5,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:treepy/app_styles.dart';
-import 'package:treepy/views/Lecturer/Course_Materials/Topics/topic_content_page.dart';
+import 'package:treepy/views/Lecturer/Course_Materials/Topics/topics_content/topic_content_page.dart';
 
 import 'addTopic.dart';
 
 class TopicsList extends StatefulWidget {
-  final String title;
-  const TopicsList({Key? key, required this.title}) : super(key: key);
+  final String Coursetitle;
+  final String Personatitle;
+  const TopicsList({Key? key, required this.Coursetitle, required this.Personatitle}) : super(key: key);
 
   @override
   State<TopicsList> createState() => _TopicsList();
@@ -23,22 +24,24 @@ class _TopicsList extends State<TopicsList> {
   // and returns no parameters.
   // In Flutter it is also true.
   // Sometimes we call it simply callback.
-  late String title;
-
+  late String Coursetitle;
+  late String Personatitle;
   late Future _data;
   final auth = FirebaseAuth.instance;
+
 
   Future getTopics() async {
     var Firestore = FirebaseFirestore.instance;
     QuerySnapshot qn = await Firestore.collection('Topics')
-        .doc(title).collection('My_Topics').get();
+        .doc(Coursetitle).collection('My_Topics').get();
 
     return qn.docs;
   }
 
   @override
   void initState() {
-    title = widget.title;
+    Coursetitle = widget.Coursetitle;
+    Personatitle = widget.Personatitle;
     _data = getTopics();
     super.initState();
   }
@@ -50,11 +53,11 @@ class _TopicsList extends State<TopicsList> {
   Widget build(BuildContext context) {
     return Scaffold(
         floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.add, semanticLabel: 'Add Topic',),
+          child: Icon(Icons.add, semanticLabel: 'Add Topic'),
           onPressed: () {
             Navigator.push(context,
                 MaterialPageRoute(
-                    builder: (context) => addTopic(title: title,)));
+                    builder: (context) => addTopic(Coursetitle: Coursetitle, Personatitle: '',)));
           },
         ),
         appBar: AppBar(
@@ -62,14 +65,12 @@ class _TopicsList extends State<TopicsList> {
             Icon(Icons.more_horiz)
           ],
           leading: BackButton(),
-          title: Text('Course Name : '+ title,
-            style: TextStyle(fontSize: 22
-            ),),
+          title: Text('Course Name : '+ Coursetitle,),
           centerTitle: true,
         ),
         body:Container(
           child: FutureBuilder(
-            future: _data,
+            future: getTopics(),
             builder: (BuildContext, snapshot) {
               if (snapshot.hasData && snapshot.data != null) {
 
@@ -95,7 +96,8 @@ class _TopicsList extends State<TopicsList> {
                               Navigator.push(context,
                                   MaterialPageRoute(builder:
                                       (context) =>
-                              TopicContent(Topictitle: snapshot.data[index].data()["topic_title"],Persona_title: title))
+                              TopicContent(Topictitle: snapshot.data[index].data()["topic_title"],
+                                  Persona_title:Personatitle, Coursetitle:Coursetitle))
                               );
                             }
 

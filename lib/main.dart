@@ -5,9 +5,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:treepy/model/rertrieve_persona_data.dart';
 import 'package:treepy/views/Lecturer/Course_Materials/Personas/lec_persona_list.dart';
-import 'package:treepy/views/Lecturer/Course_Materials/Topics/topic_content_page.dart';
+import 'package:treepy/views/Lecturer/Course_Materials/Topics/Uploads/uploadNotes.dart';
+import 'package:treepy/views/Lecturer/Course_Materials/Topics/topics_content/topic_content_page.dart';
 import 'package:treepy/views/Lecturer/Course_Materials/Topics/topic_list_page.dart';
-import 'package:treepy/views/Lecturer/Course_Materials/Uploads/camera_page.dart';
+import 'package:treepy/views/Student/Materials/Content/Video_Pages/watchVideo.dart';
 import 'package:treepy/views/Student/Materials/Reports/ReadingReports.dart';
 import 'package:treepy/views/Student/Home/mypersonas.dart';
 import 'package:treepy/views/Student/Profile/stud_profile.dart';
@@ -15,6 +16,7 @@ import 'package:treepy/views/auth/main_page.dart';
 import 'package:treepy/views/auth/register_page.dart';
 import 'package:treepy/views/auth/signin_page.dart';
 import 'package:treepy/views/onboarding_page.dart';
+import 'package:treepy/widgets/Video_Player_Widget.dart';
 import 'Notifiers/Persona_Notifier.dart';
 import 'app_styles.dart';
 import 'views/pages.dart';
@@ -64,8 +66,7 @@ class MyApp extends StatelessWidget {
         routes: {
 
           // When navigating to the "/second" route, build the SecondScreen widget.
-         '/totopicsContent': (context) => const TopicContent(Topictitle: '',
-             Persona_title: '' ),
+
         },
       debugShowCheckedModeBanner: false,
       title: 'Treepy',
@@ -92,7 +93,9 @@ class MyApp extends StatelessWidget {
         //LecsHome()
       //createPersona()
       //StdLanding()
-    seenOnboard == true ? MainPage() : OnBoardingPage()
+       /* VideoPlayerScreen()*///video_page()
+       // uploadNotes(Personatitle: '',)
+      seenOnboard == true ? MainPage() : OnBoardingPage()
      );
   }
 }

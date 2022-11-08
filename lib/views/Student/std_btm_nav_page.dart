@@ -8,6 +8,7 @@ import 'Home/stud_home_page.dart';
 import 'Materials/Content/PdfReaderPage.dart';
 import 'Home/mypersonas.dart';
 import 'Materials/Personas/stud_persona_list.dart';
+import 'Materials/Scheduler/Schedule_home.dart';
 import 'Materials/stud_persona_materials.dart';
 import 'Profile/stud_profile.dart';
 
@@ -25,7 +26,7 @@ class _StdLandingState extends State<StdLanding> {
   List<Widget> _buildScreens() {
     return [
       studPersonas(),
-      ReadingPage(),
+      scheduler_home(),
       EnrollPersona(),
       studProfile()
 
@@ -41,8 +42,8 @@ class _StdLandingState extends State<StdLanding> {
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(CupertinoIcons.book_circle),
-        title: ("Library"),
+        icon: Icon(CupertinoIcons.clock),
+        title: ("Schedules"),
         activeColorPrimary: customBrown,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),

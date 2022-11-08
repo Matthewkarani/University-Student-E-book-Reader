@@ -17,8 +17,9 @@ import '../../../../model/Topic_model.dart';
 import '../Personas/Persona Materials.dart';
 
 class addTopic extends StatefulWidget {
-  final String title;
-  const addTopic({Key? key,required this.title}) : super(key: key);
+  final String Coursetitle;
+  final String Personatitle;
+  const addTopic({Key? key,required this.Coursetitle, required this.Personatitle}) : super(key: key);
 
   @override
   State<addTopic> createState() => _addTopicState();
@@ -27,12 +28,14 @@ class _addTopicState extends State<addTopic> {
 
 
   late Future _data;
-  late String title;
+  late String Coursetitle;
+  late String Personatitle;
   final auth = FirebaseAuth.instance;
 
   void initState(){
     super.initState();
-    title = widget.title;
+    Personatitle= widget.Personatitle;;
+    Coursetitle = widget.Coursetitle;
   }
 
 
@@ -58,11 +61,18 @@ class _addTopicState extends State<addTopic> {
   }
 
 
+  test() async{
+
+  }
+
   @override
 
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        actions: [
+
+        ],
         leading: BackButton(),
         title: Text('Create New Topic',
           style:
@@ -78,7 +88,7 @@ class _addTopicState extends State<addTopic> {
                 children: [
                   SizedBox(height:10),
 
-                  //Persona Title
+                  //Topic Title Description
 
                   Align(
                     alignment: Alignment.topLeft,
@@ -89,6 +99,8 @@ class _addTopicState extends State<addTopic> {
                     ),
                   ),
                   SizedBox(height:10),
+
+
                   //Topic Title Edit Text
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 25.0),
@@ -98,6 +110,7 @@ class _addTopicState extends State<addTopic> {
                       maxLines: 1,)
                     ,),
                   SizedBox(height:10),
+
                   //Topic Title Description
                   Align(
                     alignment: Alignment.topLeft,
@@ -108,6 +121,7 @@ class _addTopicState extends State<addTopic> {
                     ),
                   ),
                   SizedBox(height:10),
+
                   //Topic Description Edit Text
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 25.0),
@@ -124,21 +138,21 @@ class _addTopicState extends State<addTopic> {
                       borderRadius: BorderRadius.circular(30),
                       color: customBrown,
                       child: Text('Create',style: TextStyle(color: Colors.white),),
-                      onPressed: ()=>{
-                        savetofirebase(),
+                      onPressed: ()=> {
+                      savetofirebase(),
 
-                        //  SavePersonaDetails(_courseTitleController.text.toString(),
-                        //  _personaDescriptionController.text.trim()),
+                      //  SavePersonaDetails(_courseTitleController.text.toString(),
+                      //  _personaDescriptionController.text.trim()),
 
 
-                        Navigator.push (context,MaterialPageRoute(builder:
-                            (context) =>  TopicsList(title: title,)
-                        )
-                        ) }
-                  ),
+                      Navigator.pop(context)
+
+                    }),
 
 
                   SizedBox(height: 25,),
+                  ElevatedButton(
+                      onPressed: test, child: Text('Test'))
 
                 ],
               ),
@@ -148,11 +162,16 @@ class _addTopicState extends State<addTopic> {
     );
   }
 
+/*Everytime a new topic is added, add it to the lecturers persona Topic, then
+  Then duplicate it in all the enrolled students Topic collections for the
+   respective personas*/
 
 
   Future savetofirebase() async {
     final User? user = auth.currentUser;
     final uid = user?.uid;
+    var authi = FirebaseAuth.instance;
+    var db = FirebaseFirestore.instance;
 
     topic_title = _topicTitleController.text.trim();
     topic_description = _topicDescriptionController.text.trim();
@@ -163,17 +182,36 @@ class _addTopicState extends State<addTopic> {
       topic_title: topic_title,
       topic_Description: topic_description,
       isTopic: true,
+      videoslinks: [],
+      notesLinks: []
     );
 
+    //Add topic to lecturer Topics collection for the respective persona.
     final docRef = FirebaseFirestore.instance
-        .collection("Topics").doc(title).
-    collection("My_Topics")
+        .collection('Topics')
+            .doc(Coursetitle).
+        collection('My_Topics')
         .withConverter(
       fromFirestore: Topic.fromFirestore,
       toFirestore: (Topic topic, options) => topic.toFirestore(),
     )
         .doc(topic_title);
     await docRef.set(topic);
+
+
+    /*Duplicate topic to the student topic collection for all the enrolled students
+    of the particular persona.
+    Step 1 Querry the studentsPersona collection find the specific persona Document
+           and create a personaTopics subCollection. then add the topic.
+           ... Use a collection group query *//*
+
+    db.collectionGroup("studentsPersonas")
+        .where("Persona_title", isEqualTo:title)
+        .get().then((QuerySnapshot s) => s.docs.forEach((e) {
+          print(e.id);
+
+    })); not necessary*/
+
 
     Fluttertoast.showToast(
         msg: "Topic Created Successfully",

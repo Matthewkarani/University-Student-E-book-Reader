@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:treepy/views/Student/Materials/Personas/stud_persona_details.dart';
 import 'package:treepy/views/Student/Materials/Personas/stud_topic_content.dart';
+import 'package:treepy/views/Student/Materials/Personas/stud_topic_list.dart';
 
 import '../../../../app_styles.dart';
 
@@ -99,7 +100,10 @@ class _studPersonasState extends State<studPersonas> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(builder:
-                                      (context) =>studTopicsList(title: snapshot.data[index].data()["Course_Title"]))
+                                      (context) =>studTopicsList(
+                                        Coursetitle: snapshot.data[index].data()["Course_Title"],
+                                        Personatitle: snapshot.data[index].data()["Persona_title"],
+                                      ),)
                               );
                             },
                           ),

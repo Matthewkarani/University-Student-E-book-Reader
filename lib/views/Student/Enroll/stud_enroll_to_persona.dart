@@ -61,6 +61,11 @@ if(Persona_key.isEmpty){
   return ;
 }else if(!Persona_key.isEmpty){
 
+  //Every Time a student is enrolled ,
+  // 1 .add the respective persona document to their myPersonas Collection
+  // 2. Querry the topics collection , and add the respective topics of the
+  //    specific personas to each persona document, call it Topics.
+
   db.collectionGroup("my_personas")
       .where("Persona_key", isEqualTo:Persona_key)
       .get().then((QuerySnapshot s) => s.docs.forEach((e) {

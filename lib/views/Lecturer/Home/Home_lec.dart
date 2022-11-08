@@ -81,6 +81,10 @@ await FirebaseFirestore.instance
 
   }
 
+
+  test() async {
+
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -95,7 +99,7 @@ await FirebaseFirestore.instance
             (
               child: MaterialButton(
                 child: Text('test'),
-            onPressed: getuserName,
+            onPressed: test,
 
           ))
 

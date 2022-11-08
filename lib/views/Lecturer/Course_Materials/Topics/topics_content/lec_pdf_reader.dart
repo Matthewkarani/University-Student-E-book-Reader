@@ -6,20 +6,18 @@ import 'package:advance_pdf_viewer/advance_pdf_viewer.dart';
 import 'package:treepy/app_styles.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
-import 'MakeNotes.dart';
 
-class ReadingPage extends StatefulWidget {
+
+class lecReadingPage extends StatefulWidget {
   final String pdfUrl;
-  const ReadingPage({
-    Key? key,
-    required this.pdfUrl})
-      : super(key: key);
+  const lecReadingPage({Key? key,
+    required this.pdfUrl}) : super(key: key);
 
   @override
-  State<ReadingPage> createState() => _ReadingPageState();
+  State<lecReadingPage> createState() => _lecReadingPageState();
 }
 
-class _ReadingPageState extends State<ReadingPage> {
+class _lecReadingPageState extends State<lecReadingPage> {
   final GlobalKey<SfPdfViewerState> _pdfViewerKey = GlobalKey();
   late String pdfUrl1;
   @override
@@ -34,17 +32,15 @@ class _ReadingPageState extends State<ReadingPage> {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.push((context),
-              MaterialPageRoute(builder: (context) => const MakeNotesPage()
-              ));
+
         },
 
 
         child: Icon(Icons.add),
-        ) ,
+      ) ,
       appBar: AppBar(
-          centerTitle: true,
-          title: Text('pdf reader page',),
+        centerTitle: true,
+        title: Text('pdf reader page',),
         actions: <Widget>[
           IconButton(
             icon: const Icon(

@@ -1,13 +1,18 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:treepy/views/Lecturer/Course_Materials/Topics/topic_content_page.dart';
-import 'package:treepy/views/Lecturer/Course_Materials/Uploads/video%20page.dart';
+import 'package:treepy/views/Lecturer/Course_Materials/Topics/Uploads/video%20page.dart';
+import 'package:treepy/views/Lecturer/Course_Materials/Topics/topics_content/topic_content_page.dart';
 
 
 
 class CameraPage extends StatefulWidget {
   final String Persona_title;
-  const CameraPage({Key? key,  required this.Persona_title,}) : super(key: key);
+  final String Coursetitle;
+  final String Topictitle;
+  const CameraPage({Key? key,
+    required this.Persona_title,
+    required this.Coursetitle,
+    required this.Topictitle,}) : super(key: key);
 
   @override
   _CameraPageState createState() => _CameraPageState();
@@ -18,6 +23,8 @@ class _CameraPageState extends State<CameraPage> {
   bool _isRecording = false;
   late CameraController _cameraController;
   late String Personatitle;
+  late String Coursetitle;
+  late String Topictitle;
 
 
   backToTopics(){
@@ -29,6 +36,8 @@ class _CameraPageState extends State<CameraPage> {
   void initState() {
     _initCamera();
     Personatitle = widget.Persona_title;
+    Coursetitle = widget.Coursetitle;
+    Topictitle = widget.Topictitle;
     super.initState();
   }
 
@@ -54,7 +63,11 @@ class _CameraPageState extends State<CameraPage> {
       setState(() => _isRecording = false);
       final route = MaterialPageRoute(
         fullscreenDialog: true,
-        builder: (_) => VideoPage(filePath: file.path,Personatitle:Personatitle),
+        builder: (_) => VideoPage(
+            Topictitle:Topictitle,
+            Coursetitle:Coursetitle,
+            filePath: file.path,
+            Personatitle:Personatitle),
       );
       Navigator.push(context, route);
     } else {
@@ -88,7 +101,6 @@ class _CameraPageState extends State<CameraPage> {
             child: Stack(
               fit: StackFit.expand,
               children: [
-
                 CameraPreview(_cameraController),
                 Padding(
                   padding: const EdgeInsets.all(25),
