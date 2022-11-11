@@ -196,7 +196,7 @@ class _createPersonaState extends State<createPersona> {
                       Persona_Description: persona_description,
                       Persona_key:persona_key ,
                       IsPersona: true,
-                          lecId: auth.currentUser?.uid,
+                          lecID: auth.currentUser?.uid,
                           personaID: persona_title
                       );
 

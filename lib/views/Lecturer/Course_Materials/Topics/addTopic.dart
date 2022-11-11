@@ -149,11 +149,6 @@ class _addTopicState extends State<addTopic> {
 
                     }),
 
-
-                  SizedBox(height: 25,),
-                  ElevatedButton(
-                      onPressed: test, child: Text('Test'))
-
                 ],
               ),
             ),

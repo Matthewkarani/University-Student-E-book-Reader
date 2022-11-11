@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:treepy/views/Student/Materials/Personas/stud_persona_list.dart';
 
 class stud_personaDetails extends StatefulWidget {
@@ -117,9 +119,18 @@ class _stud_personaDetailsState extends State<stud_personaDetails> {
                 child: const Text('Yes'),
                 onPressed: () {
                   Navigator.of(context).pop();
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context)=>studPersonas()));
+
+                  Navigator.of(context).pushAndRemoveUntil(
+                    CupertinoPageRoute(
+                      builder: (BuildContext context) {
+                        return studPersonas();
+                      },
+                    ),
+                        (_) => true,
+                  );
+                  // Navigator.pushReplacementNamed(
+                  //     context,
+                  //    '/toStud_persona_list');
                   UnenrollPersona();
 
                 }
@@ -192,4 +203,5 @@ class _stud_personaDetailsState extends State<stud_personaDetails> {
             })
     );
   }
+
 }

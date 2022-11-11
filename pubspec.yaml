@@ -57,6 +57,10 @@ dependencies:
   video_thumbnail: ^0.5.3
   path_provider: ^2.0.11
   syncfusion_flutter_pdfviewer: ^20.3.52
+  flutter_local_notifications: ^12.0.3
+  awesome_notifications: ^0.7.4+1
+  flutter_launcher_icons: ^0.9.1
+  font_awesome_flutter: ^9.1.0
 
 
   #The above plugin is used to upload the file in the background

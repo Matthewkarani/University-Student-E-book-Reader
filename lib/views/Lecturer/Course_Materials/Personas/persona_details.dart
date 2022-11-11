@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter/services.dart';
+import 'package:treepy/views/Lecturer/Course_Materials/Personas/persona_deleted_successfully.dart';
 import '../../../../model/persona_model.dart';
 import '../../../auth/auth_helper.dart';
 import 'UpdatePersona.dart';
@@ -91,9 +92,10 @@ class _personaDetailsState extends State<personaDetails> {
                 child: const Text('Yes'),
                 onPressed: () {
                   Navigator.of(context).pop();
-                  Navigator.push(
+                  Navigator.pushReplacement(
                       context,
-                      MaterialPageRoute(builder: (context)=>mypersonas()));
+                      MaterialPageRoute(builder: (context)=>PersonaDeleted(
+                        Personatitle: title,)));
                   DeletePersona();
 
                 }

@@ -30,7 +30,7 @@ class _scheduler_homeState extends State<scheduler_home> {
           ),
           body: TabBarView(
             children: [
-              reading_sch_home(),
+              PlantStatsPage(),
               review_sch_home(),
 
 

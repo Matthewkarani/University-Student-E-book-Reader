@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:treepy/Notifiers/Persona_Notifier.dart';
+import 'package:treepy/app_styles.dart';
 
 
 import '../../../../model/Pesona_card_model_data.dart';
@@ -20,7 +21,7 @@ class LecHome extends StatefulWidget {
 class _LecHomeState extends State<LecHome> {
   get persona => null;
 
-
+  String? firstName;
 
  late String UserName;
   late final String Title;
@@ -82,28 +83,73 @@ await FirebaseFirestore.instance
   }
 
 
-  test() async {
+  Widget buildFirstName(){
+    return StreamBuilder(
+      stream: FirebaseFirestore.instance.collection('users')
+          .doc(auth.currentUser?.uid).snapshots(),
+        builder:(BuildContext context ,
+            AsyncSnapshot<DocumentSnapshot> snapshot){
+         firstName= snapshot.data!['first name'];
 
+        return Text(firstName!+ '!',style :TextStyle(
+          color: customBrown2,
+            fontSize: 22,fontWeight: FontWeight.bold
+        ));
+
+        });
   }
+
+  Widget buildCreatedPersona() =>
+      Text('Created Persona\'s',style: TextStyle(
+          fontSize: 18,
+          decoration:TextDecoration.underline ),);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
+        title: Text('Lecturer Home'),
         centerTitle: true,
-        title: Text('Good ' + greeting() , style: TextStyle(
-        ),),
       ),
+      backgroundColor: Colors.white,
       body: SafeArea(
-          child: Center
-            (
-              child: MaterialButton(
-                child: Text('test'),
-            onPressed: test,
+            child: Center(
+                child: Column(
+                  children: [
+                    SizedBox(height: 10,),
+                    //Row to hold the Good morning Lecturer Widget
 
-          ))
+                   SizedBox(
+                     height: 30,
+                     child: Padding(
+                       padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                         child: Row(
+                           mainAxisAlignment: MainAxisAlignment.center,
+                           children: [
+                             Text('Good ' + greeting() ,
+                               style: TextStyle(
+                                 color: customBrown2,
+                                 fontSize: 22,fontWeight: FontWeight.bold
+                               ),),
+                             SizedBox(width: 5,),
+                             buildFirstName()
+                           ],
+                         ),
+                       ),
+                   ),
 
-      ),
+                    //Created Personas Title
+
+
+
+
+
+
+
+
+                  ],
+                )),
+          )
     );
   }
 }

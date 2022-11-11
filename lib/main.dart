@@ -1,31 +1,20 @@
-import 'dart:math';
+
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:treepy/model/rertrieve_persona_data.dart';
-import 'package:treepy/views/Lecturer/Course_Materials/Personas/lec_persona_list.dart';
-import 'package:treepy/views/Lecturer/Course_Materials/Topics/Uploads/uploadNotes.dart';
-import 'package:treepy/views/Lecturer/Course_Materials/Topics/topics_content/topic_content_page.dart';
-import 'package:treepy/views/Lecturer/Course_Materials/Topics/topic_list_page.dart';
-import 'package:treepy/views/Student/Materials/Content/Video_Pages/watchVideo.dart';
-import 'package:treepy/views/Student/Materials/Reports/ReadingReports.dart';
-import 'package:treepy/views/Student/Home/mypersonas.dart';
-import 'package:treepy/views/Student/Profile/stud_profile.dart';
+import 'package:treepy/views/Student/Materials/Personas/stud_persona_list.dart';
 import 'package:treepy/views/auth/main_page.dart';
-import 'package:treepy/views/auth/register_page.dart';
-import 'package:treepy/views/auth/signin_page.dart';
 import 'package:treepy/views/onboarding_page.dart';
-import 'package:treepy/widgets/Video_Player_Widget.dart';
-import 'Notifiers/Persona_Notifier.dart';
 import 'app_styles.dart';
 import 'views/pages.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
-import 'package:provider/provider.dart';
-import 'package:firebase_storage/firebase_storage.dart';
+import 'package:awesome_notifications/awesome_notifications.dart';
+
 
 bool? seenOnboard;
+
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -36,7 +25,28 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
 
+
   );
+
+  await AwesomeNotifications().initialize(
+       null,
+      [
+        NotificationChannel(
+            channelKey: 'basic_channel',
+            channelName: 'Basic Notifications',
+            channelDescription: 'Notification tests as alerts',
+            playSound: true,
+            onlyAlertOnce: true,
+            //groupAlertBehavior: GroupAlertBehavior.Children,
+            importance: NotificationImportance.High,
+            defaultPrivacy: NotificationPrivacy.Private,
+            defaultColor: customBrown2,
+            channelShowBadge: true,
+            ledColor: Colors.deepPurple)
+      ],
+      debug: true);
+
+
 
   /*final emulatorHost =
   (!kIsWeb && defaultTargetPlatform == TargetPlatform.android)
@@ -64,7 +74,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         routes: {
-
+          '/toStud_persona_list' : (context) => studPersonas()
           // When navigating to the "/second" route, build the SecondScreen widget.
 
         },
@@ -84,7 +94,7 @@ class MyApp extends StatelessWidget {
 
 
       ),
-        home:
+        home://CreateReadingSchedule()
         //studPersonas()//mypersonas()//TopicContent()//mypersonas()
       // addTopic()
       // ReadingPage()
@@ -95,7 +105,7 @@ class MyApp extends StatelessWidget {
       //StdLanding()
        /* VideoPlayerScreen()*///video_page()
        // uploadNotes(Personatitle: '',)
-      seenOnboard == true ? MainPage() : OnBoardingPage()
+     seenOnboard == true ? MainPage() : OnBoardingPage()
      );
   }
 }

@@ -7,6 +7,7 @@ import 'package:treepy/app_styles.dart';
 import 'package:treepy/views/Lecturer/Course_Materials/Personas/persona_details.dart';
 import 'package:treepy/views/Lecturer/Course_Materials/Topics/topic_list_page.dart';
 
+import '../../report_pages/lec_reportsHomeNav.dart';
 import 'create_persona.dart';
 
 class mypersonas extends StatefulWidget {
@@ -19,8 +20,8 @@ class mypersonas extends StatefulWidget {
 
 class _mypersonasState extends State<mypersonas> {
 
-  late Future _data;
   late String title;
+  late Future _data;
   final auth = FirebaseAuth.instance;
   Future getPersonas() async{
     var Firestore = FirebaseFirestore.instance;
@@ -124,11 +125,13 @@ class _mypersonasState extends State<mypersonas> {
                   return
                     Center(child: CircularProgressIndicator());
 
+
                 } else{
                   //Find a way of displaying this
                   return Center(
 
-                      child:Text('No topics Created'));
+                      child:Text('No topics Created',style:
+                      TextStyle(color: Colors.black),));
 
                 }
 

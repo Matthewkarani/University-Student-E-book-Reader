@@ -56,12 +56,12 @@ class _RegisterPageState extends State<RegisterPage> {
           _firstNameController.text.trim(),
           _lastNameController.text.trim(),
           _emailController.text.trim(),
-          int.parse(_ageController.text.trim(),
-          )
+          int.parse(_ageController.text.trim(),),
+          selectedValue
+
       );
 
-      //add role
-      addRole(selectedValue);
+
 
     }
 
@@ -71,7 +71,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
 
   Future addUserDetails(
-      String firstName, String lastName, String email,int age,) async {
+      String firstName, String lastName, String email,int age,String role ) async {
     final User? user = auth.currentUser;
     final uid = user?.uid;
     await FirebaseFirestore.instance.collection('users').doc(uid).set({
@@ -79,20 +79,12 @@ class _RegisterPageState extends State<RegisterPage> {
       'last name': lastName,
       'email': email,
       'age': age,
-      'uid': uid
+      'uid': uid,
+      'role': role
     });
   }
 
-  Future addRole(String selectedValue) async {
 
-    final User? user = auth.currentUser;
-    final uid = user?.uid;
-    await FirebaseFirestore.instance.collection('users').doc(uid).
-    update({
-      'role': selectedValue ,
-    });
-
-  }
   bool passwordConfirmed() {
     if(_confirmPasswordController.text.trim() == _passwordController.text.trim()){
       return true;

@@ -6,6 +6,8 @@ import 'package:treepy/views/auth/signin_page.dart';
 import '../app_styles.dart';
 import '../model/onboard_data.dart';
 import '../size_configs.dart';
+import '../widgets/my_text_button.dart';
+import '../widgets/onboard_nav_btn.dart';
 import 'pages.dart';
 import '../widgets/widgets.dart';
 
