@@ -13,6 +13,32 @@ class studProfile extends StatefulWidget {
 
 class _studProfileState extends State<studProfile> {
 
+
+
+
+
+  Widget BuildReadingStreak()=>Text("");
+
+  Widget BuildBooksRead()=>  FutureBuilder(
+  future: getBooksNo(),
+  builder: (BuildContext, snapshot) {
+    return Text('');
+   });
+
+
+  Widget BuildAverageReadingTime()=> Text('data');
+
+
+  Widget BuildTotalReadingTime() => Text('');
+
+
+
+
+
+
+
+
+
   final user = FirebaseAuth.instance.currentUser!;
   @override
   Widget build(BuildContext context) {
@@ -215,4 +241,6 @@ class _studProfileState extends State<studProfile> {
       ),
     );
   }
+
+  getBooksNo() {}
 }

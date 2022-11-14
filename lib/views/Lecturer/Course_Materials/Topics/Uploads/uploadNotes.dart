@@ -54,7 +54,7 @@ class _uploadNotesState extends State<uploadNotes> {
 
   Future selectFile() async{
     final result = await FilePicker.platform.pickFiles(type: FileType.custom,
-      allowedExtensions: ['pdf','docx'],
+      allowedExtensions: ['pdf'],
     );
 
     if(result == null)  return ;

@@ -100,9 +100,14 @@ class _stud_TopicContent extends State<stud_TopicContent> {
                                   context,
                                   MaterialPageRoute(builder:
                                       (context) =>ReadingPage(
-                                    pdfUrl: snapshot.data[index].data()["notes_link"],
-                                  ),)
-                              );
+                                        pdfUrl: snapshot.data[index].data()["notes_link"],
+                                        personaTitle: Personatitle,
+                                        topicTitle: Topictitle,
+                                        notesTitle: snapshot.data[index].data()["notes_title"],
+                                  )
+                                  ));
+
+
                             },
                           ),
 

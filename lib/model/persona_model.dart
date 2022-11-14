@@ -42,7 +42,7 @@ class Persona {
       if (Persona_Description != null) "Persona_Description": Persona_Description,
       if (IsPersona != null) "IsPersona": IsPersona,
       if (Persona_key != null) "Persona_key": Persona_key,
-      if (lecID != null) "lecId": lecID,
+      if (lecID != null) "lecID": lecID,
       if (personaID != null) "personaID": personaID,
 
 

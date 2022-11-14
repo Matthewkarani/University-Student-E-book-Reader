@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+ import 'package:flutter/material.dart';
 //Base class for the persona
 abstract class PersonaItem{
   //title line to show in a list
