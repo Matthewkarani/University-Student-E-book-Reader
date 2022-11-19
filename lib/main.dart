@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:treepy/views/Lecturer/Course_Materials/Topics/Uploads/uploadNotes.dart';
 import 'package:treepy/views/Student/Materials/Personas/stud_persona_list.dart';
 import 'package:treepy/views/auth/main_page.dart';
 import 'package:treepy/views/onboarding_page.dart';
@@ -29,8 +30,11 @@ Future<void> main() async {
   );
 
   await AwesomeNotifications().initialize(
-       null,
+      'resource://drawable/res_notification_app_icon',
+
       [
+        //The NotificationChannel Object holds info about the notification channel
+        //itself, such as channel key and channel name.
         NotificationChannel(
             channelKey: 'basic_channel',
             channelName: 'Basic Notifications',
@@ -42,9 +46,20 @@ Future<void> main() async {
             defaultPrivacy: NotificationPrivacy.Private,
             defaultColor: customBrown2,
             channelShowBadge: true,
-            ledColor: Colors.deepPurple)
+            ledColor: Colors.deepPurple),
+        NotificationChannel(
+            channelKey: 'scheduled_channel',
+            channelName: 'Scheduled Notifications',
+            defaultColor: Colors.teal,
+            locked: true,
+            importance: NotificationImportance.High,
+            soundSource: 'resource://raw/res_custom_notification',
+          channelDescription: 'For scheduled notifications',
+        )
       ],
       debug: true);
+
+
 
 
 
@@ -94,7 +109,8 @@ class MyApp extends StatelessWidget {
 
 
       ),
-        home://CreateReadingSchedule()
+        home://uploadNotes(Personatitle: '', Coursetitle: '', Topictitle: '',)
+        //CreateReadingSchedule()
         //studPersonas()//mypersonas()//TopicContent()//mypersonas()
       // addTopic()
       // ReadingPage()
@@ -105,7 +121,7 @@ class MyApp extends StatelessWidget {
       //StdLanding()
        /* VideoPlayerScreen()*///video_page()
        // uploadNotes(Personatitle: '',)
-     seenOnboard == true ? MainPage() : OnBoardingPage()
+    seenOnboard == true ? MainPage() : OnBoardingPage()
      );
   }
 }

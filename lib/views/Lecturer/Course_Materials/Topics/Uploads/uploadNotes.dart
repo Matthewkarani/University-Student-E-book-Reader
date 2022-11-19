@@ -52,16 +52,17 @@ class _uploadNotesState extends State<uploadNotes> {
     super.initState();
   }
 
-  Future selectFile() async{
+  Future selectFile() async {
     final result = await FilePicker.platform.pickFiles(type: FileType.custom,
-      allowedExtensions: ['pdf'],
+      allowedExtensions: ['pdf'],allowMultiple: false
     );
 
-    if(result == null)  return ;
-
-    setState(() {
-      pickedFile = result.files.first;
-    });
+    if (result != null) {
+      setState(() {
+        pickedFile = result.files.first;
+      });
+    }else
+      return;
   }
 
 

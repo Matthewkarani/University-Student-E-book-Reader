@@ -5,7 +5,7 @@ import 'package:treepy/app_styles.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:treepy/views/Student/Materials/Scheduler/reading_schedule%20home.dart';
 
-import '../../../../api/notification _api.dart';
+import '../../../../api/notifications.dart';
 import '../../../../widgets/big_text.dart';
 import '../../../../widgets/my_text_button.dart';
 
@@ -28,47 +28,7 @@ class _CreateReadingScheduleState extends State<CreateReadingSchedule> {
     _readingScheduletitleController.dispose();
     super.dispose();
   }
-  @override
-  void initState() {
-    super.initState();
-    AwesomeNotifications().isNotificationAllowed().then(
-          (isAllowed) {
-        if (!isAllowed) {
-          showDialog(
-            context: context,
-            builder: (context) => AlertDialog(
-              title: Text('Allow Notifications'),
-              content: Text('Our app would like to send you notifications'),
-              actions: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  child: Text(
-                    'Don\'t Allow',
-                    style: TextStyle(color: Colors.grey, fontSize: 18),
-                  ),
-                ),
-                TextButton(
-                  onPressed: () => AwesomeNotifications()
-                      .requestPermissionToSendNotifications()
-                      .then((_) => Navigator.pop(context)),
-                  child: Text(
-                    'Allow',
-                    style: TextStyle(
-                      color: Colors.teal,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          );
-        }
-      },
-    );
-  }
+
   Widget buildTitle() =>
       Padding(
         padding: const EdgeInsets.symmetric(horizontal: 25.0),
@@ -103,7 +63,7 @@ label: Text('Set Reminder'), onPressed: () {  },
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (_) => PlantStatsPage(),
+                  builder: (_) => ReadingScheduleHome(),
                 ),
               );
             },

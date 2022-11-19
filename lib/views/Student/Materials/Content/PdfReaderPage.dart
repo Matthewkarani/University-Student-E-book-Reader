@@ -118,7 +118,7 @@ class _ReadingPageState extends State<ReadingPage> {
           },
         ),
         centerTitle: true,
-        title: Text('pdf reader page',),
+        title: Text(notesTitle),
         actions: <Widget>[
           IconButton(
             icon: const Icon(
