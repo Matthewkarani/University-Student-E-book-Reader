@@ -1,10 +1,14 @@
 
 import 'package:awesome_notifications/awesome_notifications.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../api/notifications.dart';
+import '../../../../app_styles.dart';
 import '../../../../util/utilities.dart';
+import '../../../../widgets/icon_and_text_widget.dart';
 import '../../../../widgets/widgets.dart';
+import '../../../Lecturer/Course_Materials/Topics/topics_content/lec_pdf_reader.dart';
 import 'createReadingSchedule.dart';
 
 class ReadingScheduleHome extends StatefulWidget {
@@ -57,61 +61,89 @@ class _ReadingScheduleHome extends State<ReadingScheduleHome> {
         }
       },
     );
+  }
+  Future getReadingSchedules() async{
+    var Firestore = FirebaseFirestore.instance;
+    QuerySnapshot qn = await Firestore
+        .collection('Notifications')
+        .get();
+
+    return qn.docs;
 
   }
+
+  Widget buildReadingSchedules() =>
+      FutureBuilder(
+          future: getReadingSchedules(),
+          builder: (BuildContext, snapshot){
+            if(snapshot.hasData && snapshot.data != null){
+              return SizedBox(
+                  height:300,
+                  child:  ListView.builder(
+                      itemCount: snapshot.data.length,
+                      itemBuilder: (BuildContext,index){
+                        return ListTile(
+                          style: ListTileStyle.list,
+                          selectedTileColor: Colors.grey,
+                          minVerticalPadding: 10,
+                          subtitle: Text('Scheduled for every :'
+                              +'${snapshot.data[index].data()["selectedDay"]}'
+                              + ' at ' + '${snapshot.data[index].data()["timeOfDay"]}'),
+                          title: IconAndTextWidget(
+                            icon: Icons.alarm,
+                            text:'${snapshot.data[index].data()["Schedule Title"]}',
+
+                            iconColor: customBrown2,),
+                          // trailing: MaterialButton(
+                          //   height: 30,
+                          //   color: customBrown2,
+                          //   shape: RoundedRectangleBorder(
+                          //       borderRadius: BorderRadius.circular(20)), onPressed: () {  }, ,),
+
+                        );
+                      }
+                  )
+              );
+            }else if(snapshot.data == null) {
+              return
+                Center(child: CircularProgressIndicator());
+
+            } else{
+              //Find a way of displaying this
+              return Center(
+
+                  child:Text('No topics Created'));
+            }});
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        centerTitle: true,
-        title: Text('My reading schedules'),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () { Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context)=>
-                CreateReadingSchedule())
-        ); },
-        child: Icon(Icons.add),
-      ),
-      body: Center(
-        child: Padding(
-          padding: EdgeInsets.all(10),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'Your Plant Stats',
-                style: Theme.of(context).textTheme.headline4,
-              ),
-              SizedBox(
-                height: 45,
-              ),
-              SizedBox(
-                  height:10 ,
-                  child: PlantImage()),
-              SizedBox(
-                height: 25,
-              ),
-              HomePageButtons(
-                onPressedOne: () async {
-                  createReadingReminderNotification();
-                },
-                onPressedTwo: () async {
-                  NotificationWeekAndTime? pickedSchedule =
-                  await pickSchedule(context);
+      floatingActionButton:
+      FloatingActionButton(
+        onPressed: (){
+          Navigator.push(context,
+          MaterialPageRoute(
+              builder: (context)=>
+          CreateReadingSchedule()));
+        },
+        child: Icon(Icons.add),),
+      body: Column(
+        children: [
+          SizedBox(height: 10,),
+          Align(
+              alignment:Alignment.topCenter,
+              child: Text('My reading Schedules'
+                ,style: TextStyle(
+                    fontSize: 22,
+                    decoration: TextDecoration.underline),)),
+          SizedBox(height: 10,),
+          buildReadingSchedules()
 
-                  if (pickedSchedule != null) {
-                    createWaterReminderNotification(pickedSchedule);
-                  }
-                },
-                onPressedThree:cancelScheduledNotifications,
-              ),
-            ],
-          ),
-        ),
+          //
+
+
+        ],
       ),
     );
   }

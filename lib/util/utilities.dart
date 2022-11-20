@@ -1,4 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:intl/intl.dart';
+import 'package:treepy/app_styles.dart';
 
 int createUniqueId() {
   return DateTime.now().millisecondsSinceEpoch.remainder(100000);
@@ -12,18 +16,40 @@ class NotificationWeekAndTime {
     required this.dayOfTheWeek,
     required this.timeOfDay,
   });
+
+  factory NotificationWeekAndTime.fromFirestore(
+      DocumentSnapshot<Map<String, dynamic>> snapshot,
+      SnapshotOptions? options,
+      ) {
+    final data = snapshot.data();
+    return NotificationWeekAndTime(
+    dayOfTheWeek: data?['dayOfTheWeek'],
+      timeOfDay: data?['timeOfDay'],
+    );
+  }
+  Map<String, dynamic> toFirestore() {
+    return {
+      if (dayOfTheWeek != null) "dayOfTheWeek": dayOfTheWeek,
+      if (timeOfDay != null) "timeOfDay": timeOfDay,
+
+
+
+    };
+  }
 }
+
+
 Future<NotificationWeekAndTime?> pickSchedule(
     BuildContext context,
     ) async {
   List<String> weekdays = [
-    'Mon',
-    'Tue',
-    'Wed',
-    'Thu',
-    'Fri',
-    'Sat',
-    'Sun',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+    'Sunday',
   ];
   TimeOfDay? timeOfDay;
   DateTime now = DateTime.now();
@@ -49,7 +75,7 @@ Future<NotificationWeekAndTime?> pickSchedule(
                   },
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(
-                      Colors.teal,
+                      customBrown2,
                     ),
                   ),
                   child: Text(weekdays[index]),
@@ -71,19 +97,41 @@ Future<NotificationWeekAndTime?> pickSchedule(
           return Theme(
             data: ThemeData(
               colorScheme: ColorScheme.light(
-                primary: Colors.teal,
+                primary: customBrown2,
               ),
             ),
             child: child!,
           );
         });
 
-    if (timeOfDay != null) {
+
+
+      if (timeOfDay != null) {
+         int? dayofweek = selectedDay;
+        // //parseDate Time
+        // var datenow = DateTime.now();
+        // var date = '$datenow';
+        // DateTime parseDate =
+        // new DateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").parse(date);
+        // var inputDate = DateTime.parse(parseDate.toString());
+        // var outputFormat = DateFormat('MM/dd/yyyy hh:mm a');
+        // var outputDate = outputFormat.format(inputDate);
+
+      var notificationDetails = <String, dynamic>{
+        //'Schedule Title' : Scheduletitle,
+        'selectedDay': weekdays[dayofweek! - 1],
+        'timeOfDay': '$timeOfDay',
+        'period' : timeOfDay.period.toString(),
+         'created at' : DateTime.now()
+      };
+
+      FirebaseFirestore.instance.collection("Notifications").doc().set(
+          notificationDetails);
+      print('$notificationDetails');
       return NotificationWeekAndTime(
           dayOfTheWeek: selectedDay!, timeOfDay: timeOfDay);
+     }
     }
+    return null;
   }
-  return null;
-}
-
 

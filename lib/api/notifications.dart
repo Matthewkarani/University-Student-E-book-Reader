@@ -20,14 +20,14 @@ Future<void> createReadingReminderNotification() async {
 
 }
 
-Future<void> createWaterReminderNotification(
+Future<void> createScheduledReadingReminderNotification(
     NotificationWeekAndTime notificationSchedule) async {
   await AwesomeNotifications().createNotification(
     content: NotificationContent(
       id: createUniqueId(),
       channelKey: 'scheduled_channel',
-      title: '${Emojis.wheater_droplet} Add some water to your plant!',
-      body: 'Water your plant regularly to keep it healthy.',
+      title: '${Emojis.activites_confetti_ball} Reading Time',
+      body: 'It\s time to get some reading done',
       notificationLayout: NotificationLayout.Default,
     ),
     actionButtons: [
