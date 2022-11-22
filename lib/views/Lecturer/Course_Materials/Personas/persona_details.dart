@@ -92,11 +92,7 @@ class _personaDetailsState extends State<personaDetails> {
                 child: const Text('Yes'),
                 onPressed: () {
                   Navigator.of(context).pop();
-                  Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(builder: (context)=>PersonaDeleted(
-                        Personatitle: title,)));
-                  DeletePersona();
+                  Navigator.of(context).pop();
 
                 }
             )

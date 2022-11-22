@@ -4,7 +4,6 @@ import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:treepy/views/Lecturer/report_pages/lec_reports_home.dart';
 
 import '../../app_styles.dart';
-import 'Course_Materials/Topics/topics_content/topic_content_landingpage.dart';
 import 'Course_Materials/Personas/lec_persona_list.dart';
 import 'Home/Home_lec.dart';
 import 'Course_Materials/Personas/create_persona.dart';

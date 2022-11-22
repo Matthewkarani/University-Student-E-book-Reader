@@ -6,6 +6,7 @@ import 'package:treepy/views/Student/Materials/Personas/stud_topic_content.dart'
 import 'package:treepy/views/Student/Materials/Personas/stud_topic_list.dart';
 
 import '../../../../app_styles.dart';
+import '../../Enroll/stud_enroll_to_persona.dart';
 
 
 class studPersonas extends StatefulWidget {
@@ -22,6 +23,7 @@ class _studPersonasState extends State<studPersonas> {
   late Future _data;
   late String title;
   final auth = FirebaseAuth.instance;
+  final scaffoldKey = GlobalKey<ScaffoldState>();
   Future getPersonas() async{
     var Firestore = FirebaseFirestore.instance;
     QuerySnapshot qn = await Firestore.collection('users').doc(auth.currentUser!.uid)
@@ -42,6 +44,35 @@ class _studPersonasState extends State<studPersonas> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        drawer: Drawer(
+          backgroundColor: customBrown2,
+
+          child: ListView(
+            // Important: Remove any padding from the ListView.
+            padding: EdgeInsets.zero,
+            children: [
+              const DrawerHeader(
+
+                decoration: BoxDecoration(
+                  color: Colors.blue,
+                ),
+                child: Text(''),
+              ),
+              ListTile(
+                title: const Text('Enroll to Persona'),
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder:
+                              (context)=>EnrollPersona()));
+                  scaffoldKey.currentState!.closeDrawer();
+                },
+              ),
+
+            ],
+          ),
+        ),
         appBar: AppBar(
           actions: [
             Padding(

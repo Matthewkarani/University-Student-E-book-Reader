@@ -5,7 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:treepy/app_styles.dart';
-import 'package:treepy/views/Lecturer/Course_Materials/Topics/topics_content/topic_content_page.dart';
+import 'package:treepy/views/Lecturer/Course_Materials/Topics/topics_content/lec_topic_content_page.dart';
 
 import '../Course_Materials/Topics/addTopic.dart';
 

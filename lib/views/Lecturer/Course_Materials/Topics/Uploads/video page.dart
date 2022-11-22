@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:treepy/views/Lecturer/Course_Materials/Topics/topics_content/topic_content_page.dart';
+import 'package:treepy/views/Lecturer/Course_Materials/Topics/topics_content/lec_topic_content_page.dart';
 import 'package:video_player/video_player.dart';
 
 import 'UploadVideoToFirebase.dart';

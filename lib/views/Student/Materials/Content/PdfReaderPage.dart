@@ -115,6 +115,13 @@ class _ReadingPageState extends State<ReadingPage> {
             _printDuration(diff);
 
             Navigator.pop(context);
+            var minTime= 300 as Duration;
+            if(diff < minTime!){
+              ScaffoldMessenger.of(context).
+              showSnackBar(SnackBar(content:
+              Text('Come Back Soon')));
+            }
+
           },
         ),
         centerTitle: true,

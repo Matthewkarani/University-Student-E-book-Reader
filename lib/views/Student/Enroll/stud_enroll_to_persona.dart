@@ -5,8 +5,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 import '../../../app_styles.dart';
+import '../../Lecturer/Course_Materials/Personas/lec_persona_list.dart';
 import '../Home/stud_home_page.dart';
 import '../Home/mypersonas.dart';
 import '../Materials/Personas/stud_persona_list.dart';
@@ -24,7 +26,41 @@ class _EnrollPersonaState extends State<EnrollPersona> {
 
   late String key;
 
+  final _formKey = GlobalKey<FormState>();
 
+  showMyDialog() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          content: SingleChildScrollView(
+            child: ListBody(
+              children:  <Widget>[
+                Text('Persona Successfully Enrolled'),
+
+
+              ],
+            ),
+          ),
+          actions: <Widget>[
+
+
+
+            TextButton(
+                child: const Text('Ok'),
+                onPressed: () {
+                  _personaKeycontroller.clear();
+                  Navigator.of(context).pop();
+
+
+                }
+            )
+          ],
+        );
+      },
+    );
+  }
   @override
   void dispose() {
     _personaKeycontroller.dispose();
@@ -38,7 +74,7 @@ class _EnrollPersonaState extends State<EnrollPersona> {
     var uid = auth.currentUser?.uid;
     var db = FirebaseFirestore.instance;
     bool dbKey = false;
-    //Stores for student details doc
+    //Container variables for student details doc
     String? lastName;
     String? firstName;
 
@@ -131,9 +167,7 @@ if(Persona_key.isEmpty){
       db.collection('users').doc(uid)
           .collection('studentPersonas').doc(Persona_title).set(personaData);
 
-      Navigator.push(context,
-          MaterialPageRoute(builder:
-              (context)=>studPersonas()));
+      showMyDialog();
 
 
 
@@ -214,27 +248,30 @@ return;
                   ),
                   child: Padding(
                     padding: const EdgeInsets.only(left: 12.0),
-                    child: TextField(
-                        obscureText: !_passwordVisible,
-                        controller: _personaKeycontroller,
-                        decoration: InputDecoration(
-                            suffixIcon: IconButton(
-                              icon: Icon(
-                                // Based on passwordVisible state choose the icon
-                                _passwordVisible
-                                    ? Icons.visibility
-                                    : Icons.visibility_off,
-                                color: Theme.of(context).primaryColorDark,
-                              ),
-                              onPressed: () {
-                                // Update the state i.e. toogle the state of passwordVisible variable
-                                setState(() {
+                    child: Form(
+                      key: _formKey,
+                      child: TextField(
+                          obscureText: !_passwordVisible,
+                          controller: _personaKeycontroller,
+                          decoration: InputDecoration(
+                              suffixIcon: IconButton(
+                                icon: Icon(
+                                  // Based on passwordVisible state choose the icon
+                                  _passwordVisible
+                                      ? Icons.visibility
+                                      : Icons.visibility_off,
+                                  color: Theme.of(context).primaryColorDark,
+                                ),
+                                onPressed: () {
+                                  // Update the state i.e. toogle the state of passwordVisible variable
+                                  setState(() {
 
-                                  _passwordVisible = !_passwordVisible;
-                                });
-                              },
-                            ),
-                            border: InputBorder.none, hintText: 'Enter key here')),
+                                    _passwordVisible = !_passwordVisible;
+                                  });
+                                },
+                              ),
+                              border: InputBorder.none, hintText: 'Enter key here')),
+                    ),
                   ),
                 ),
 

@@ -7,6 +7,7 @@ import 'package:treepy/app_styles.dart';
 import 'package:treepy/views/Lecturer/Course_Materials/Personas/persona_details.dart';
 import 'package:treepy/views/Lecturer/Course_Materials/Topics/topic_list_page.dart';
 
+import '../../../Student/Enroll/stud_enroll_to_persona.dart';
 import '../../report_pages/lec_reportsHomeNav.dart';
 import 'create_persona.dart';
 
@@ -48,6 +49,7 @@ class _mypersonasState extends State<mypersonas> {
 
   @override
   Widget build(BuildContext context) {
+    getPersonas();
     return Scaffold(
         floatingActionButton:FloatingActionButton(
           child: Icon(Icons.add, semanticLabel: 'Add Persona',),
@@ -123,7 +125,7 @@ class _mypersonasState extends State<mypersonas> {
                       });
                 }else if(snapshot.data == null) {
                   return
-                    Center(child: CircularProgressIndicator());
+                    Center(child: Icon(Icons.sticky_note_2));
 
 
                 } else{

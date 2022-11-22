@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:treepy/views/Lecturer/Course_Materials/Topics/Uploads/uploadNotes.dart';
 import 'package:treepy/views/Student/Materials/Personas/stud_persona_list.dart';
+import 'package:treepy/views/Student/Materials/Reports/bar_graph.dart';
 import 'package:treepy/views/auth/main_page.dart';
 import 'package:treepy/views/onboarding_page.dart';
 import 'app_styles.dart';
@@ -89,9 +90,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         routes: {
-          '/toStud_persona_list' : (context) => studPersonas()
+          '/toStud_persona_list' : (context) => studPersonas(),
           // When navigating to the "/second" route, build the SecondScreen widget.
-
+          '/toPersonaHome' : (context) => studPersonas()
         },
       debugShowCheckedModeBanner: false,
       title: 'Treepy',
@@ -109,7 +110,8 @@ class MyApp extends StatelessWidget {
 
 
       ),
-        home://uploadNotes(Personatitle: '', Coursetitle: '', Topictitle: '',)
+        home:
+       // PieChartSample2()//uploadNotes(Personatitle: '', Coursetitle: '', Topictitle: '',)
         //CreateReadingSchedule()
         //studPersonas()//mypersonas()//TopicContent()//mypersonas()
       // addTopic()

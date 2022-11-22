@@ -1,7 +1,7 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:treepy/views/Lecturer/Course_Materials/Topics/Uploads/video%20page.dart';
-import 'package:treepy/views/Lecturer/Course_Materials/Topics/topics_content/topic_content_page.dart';
+import 'package:treepy/views/Lecturer/Course_Materials/Topics/topics_content/lec_topic_content_page.dart';
 
 
 

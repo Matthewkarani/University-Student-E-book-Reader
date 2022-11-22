@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -12,6 +13,36 @@ class studProfile extends StatefulWidget {
 }
 
 class _studProfileState extends State<studProfile> {
+  late bool getPoints;
+  var db = FirebaseFirestore.instance;
+  var auth = FirebaseAuth.instance;
+  String? CurrentPoints;
+  String? getCurrentScore(){
+    var uid = auth.currentUser?.uid;
+  final docRef =  db.collection("users").doc(uid);
+  docRef.snapshots().listen(
+  (event) {
+        CurrentPoints = event['ReadingPoints']. toString();
+        // print("current data: ${event.data()}");
+
+        setState(() {
+          getPoints = true;
+        });
+        // // onError:
+        //     (error) => print("Listen failed: $error");
+      });
+
+
+  return CurrentPoints;
+}
+ CalculateAverageReadingTime(){
+
+}
+
+CalculateTotalReadingTime(){
+
+}
+
 
 
 
@@ -36,12 +67,17 @@ class _studProfileState extends State<studProfile> {
 
 
 
-
+@override
+  void initState() {
+  getPoints = false;
+    super.initState();
+  }
 
 
   final user = FirebaseAuth.instance.currentUser!;
   @override
   Widget build(BuildContext context) {
+    getCurrentScore();
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -131,12 +167,12 @@ class _studProfileState extends State<studProfile> {
                 padding: const EdgeInsets.symmetric(horizontal : 25.0),
                 child: Align(
                   alignment: Alignment.topLeft,
-                  child: Text('Total Books Read',
+                  child: Text('Reading Points',
                       style: TextStyle(fontSize: 15)),
                 ),
               ),
               SizedBox(height: 5,),
-              //Display View : 5 Books
+              //Display View
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal : 25.0),
                 child: Align(
@@ -149,13 +185,11 @@ class _studProfileState extends State<studProfile> {
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                          '5 books'
+                      child:  Text('${getCurrentScore()} Points')
                       ),
                     ),
                   ),
                 ),
-              ),
 
               SizedBox(height: 10,),
               //Title : Average daily Reading time

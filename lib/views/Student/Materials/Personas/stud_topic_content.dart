@@ -96,14 +96,20 @@ class _stud_TopicContent extends State<stud_TopicContent> {
                             child: Text('Open',style:
                             TextStyle(color: Colors.white),),
                             onPressed:(){
+                              var auth = FirebaseAuth.instance;
+                              var uid = auth.currentUser?.uid;
+                              FirebaseFirestore.instance.collection('users').doc(uid).update({
+                                'ReadingPoints': FieldValue.increment(1),
+                              });
+
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(builder:
                                       (context) =>ReadingPage(
-                                        pdfUrl: snapshot.data[index].data()["notes_link"],
-                                        personaTitle: Personatitle,
-                                        topicTitle: Topictitle,
-                                        notesTitle: snapshot.data[index].data()["notes_title"],
+                                    pdfUrl: snapshot.data[index].data()["notes_link"],
+                                    personaTitle: Personatitle,
+                                    topicTitle: Topictitle,
+                                    notesTitle: snapshot.data[index].data()["notes_title"],
                                   )
                                   ));
 
@@ -157,7 +163,7 @@ class _stud_TopicContent extends State<stud_TopicContent> {
 
                           /*Text(),*/
                           title: IconAndTextWidget(
-                            icon: Icons.menu_book_sharp,
+                            icon: Icons.video_collection_rounded,
                             text:snapshot.data[index].data()["video_title"] ,
                             iconColor: customBrown2,),
                           trailing: MaterialButton(
@@ -173,7 +179,7 @@ class _stud_TopicContent extends State<stud_TopicContent> {
                                 context,
                                 screen: video_page(
                                   video_url: snapshot.data[index].data()["video_link"],
-                                 ),
+                                ),
                                 withNavBar: false, // OPTIONAL VALUE. True by default.
                                 pageTransitionAnimation: PageTransitionAnimation.cupertino,
                               );
@@ -211,7 +217,7 @@ class _stud_TopicContent extends State<stud_TopicContent> {
 
   @override
   Widget build(BuildContext context) {
-   return Scaffold(
+    return Scaffold(
         appBar: AppBar(
           actions: <Widget>[
 
@@ -308,4 +314,3 @@ class _stud_TopicContent extends State<stud_TopicContent> {
     );
   }
 }
-

@@ -262,7 +262,7 @@ class _TopicContentState extends State<TopicContent> {
 
                           /*Text(),*/
                           title: IconAndTextWidget(
-                            icon: Icons.menu_book_sharp,
+                            icon: Icons.video_collection_rounded,
                             text:snapshot.data[index].data()["video_title"] ,
                             iconColor: customBrown2,),
                           trailing: MaterialButton(

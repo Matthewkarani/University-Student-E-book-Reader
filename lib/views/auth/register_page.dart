@@ -30,7 +30,7 @@ class _RegisterPageState extends State<RegisterPage> {
   final user = FirebaseAuth.instance.currentUser;
 
   GroupController controller = GroupController();
-
+  final _formKey = GlobalKey<FormState>();
   late final String selectedValue;
   @override
   void dispose() {
