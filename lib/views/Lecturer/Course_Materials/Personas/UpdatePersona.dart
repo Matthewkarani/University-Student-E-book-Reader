@@ -25,6 +25,7 @@ class _UpdatePeronaState extends State<UpdatePerona> {
   final auth = FirebaseAuth.instance;
 
   User? user = FirebaseAuth.instance.currentUser;
+  var Firestore = FirebaseFirestore.instance;
 
   final personaTitleController = TextEditingController();
   final _courseTitleController = TextEditingController();
@@ -52,6 +53,7 @@ class _UpdatePeronaState extends State<UpdatePerona> {
   late final String editcourse_title;
   late final String editpersona_description;
   late final String editpersona_key;
+
 
   @override
   void dispose() {
@@ -300,14 +302,6 @@ class _UpdatePeronaState extends State<UpdatePerona> {
   Future saveNewPersonaKey() async{
 
   }
-
-
-
-
-
-
-
-
 
   @override
   Widget build(BuildContext context) {

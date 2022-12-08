@@ -78,7 +78,7 @@ class _ReadingScheduleHome extends State<ReadingScheduleHome> {
           builder: (BuildContext, snapshot){
             if(snapshot.hasData && snapshot.data != null){
               return SizedBox(
-                  height:300,
+                  height:400,
                   child:  ListView.builder(
                       itemCount: snapshot.data.length,
                       itemBuilder: (BuildContext,index){

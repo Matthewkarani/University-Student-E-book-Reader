@@ -22,7 +22,6 @@ class _LecBtmNav extends State<LecBtmNav> {
 
   List<Widget> _buildScreens() {
     return [
-      LecHome(),
       mypersonas(),
       LecReport(),
       LecsProfile()
@@ -32,12 +31,6 @@ class _LecBtmNav extends State<LecBtmNav> {
 
   List<PersistentBottomNavBarItem> _navBarsItems() {
     return [
-      PersistentBottomNavBarItem(
-        icon: Icon(CupertinoIcons.home),
-        title: ("Home"),
-        activeColorPrimary: customBrown,
-        inactiveColorPrimary: CupertinoColors.systemGrey,
-      ),
     PersistentBottomNavBarItem(
     icon: Icon(CupertinoIcons.book),
     title: ("Personas"),

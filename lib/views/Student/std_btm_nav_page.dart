@@ -27,7 +27,7 @@ class _StdLandingState extends State<StdLanding> {
     return [
       studPersonas(),
       scheduler_home(),
-      EnrollPersona(),
+      // EnrollPersona(),
       studProfile()
 
     ];
@@ -47,12 +47,12 @@ class _StdLandingState extends State<StdLanding> {
         activeColorPrimary: customBrown,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
-      PersistentBottomNavBarItem(
-        icon: Icon(CupertinoIcons.search_circle),
-        title: ("Enroll"),
-        activeColorPrimary: customBrown,
-        inactiveColorPrimary: CupertinoColors.systemGrey,
-      ),
+      // PersistentBottomNavBarItem(
+      //   icon: Icon(CupertinoIcons.search_circle),
+      //   title: ("Enroll"),
+      //   activeColorPrimary: customBrown,
+      //   inactiveColorPrimary: CupertinoColors.systemGrey,
+      // ),
       PersistentBottomNavBarItem(
         icon: Icon(CupertinoIcons.profile_circled),
         title: ("Profile"),

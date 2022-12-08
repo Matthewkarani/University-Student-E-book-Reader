@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
 import '../../../app_styles.dart';
+import '../Materials/Reports/bar_graph.dart';
 
 class studProfile extends StatefulWidget {
   const studProfile({Key? key}) : super(key: key);
@@ -81,6 +82,19 @@ CalculateTotalReadingTime(){
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+          actions: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: GestureDetector(
+                onTap: (){
+                  Navigator.push(context,
+                      MaterialPageRoute(
+                          builder: (context)=> PieChartSample2()));
+                },
+                  child: Icon(Icons.bar_chart)
+              ),
+            )
+          ],
           centerTitle: true,
           title : Text('My Profile', style: TextStyle(
               fontWeight:FontWeight.bold))

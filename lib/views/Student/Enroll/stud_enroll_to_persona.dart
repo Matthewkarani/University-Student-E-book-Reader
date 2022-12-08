@@ -51,7 +51,9 @@ class _EnrollPersonaState extends State<EnrollPersona> {
                 child: const Text('Ok'),
                 onPressed: () {
                   _personaKeycontroller.clear();
-                  Navigator.of(context).pop();
+                  Navigator.pushReplacement(
+                      context, MaterialPageRoute(
+                      builder: (context)=>studPersonas() ));
 
 
                 }
@@ -168,6 +170,7 @@ if(Persona_key.isEmpty){
           .collection('studentPersonas').doc(Persona_title).set(personaData);
 
       showMyDialog();
+
 
 
 

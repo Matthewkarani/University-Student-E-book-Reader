@@ -22,7 +22,7 @@ class _scheduler_homeState extends State<scheduler_home> {
             bottom: const TabBar(
               tabs: [
                 Tab(icon: Icon(Icons.book_rounded)),
-                Tab(icon: Icon(Icons.book_outlined)),
+
 
               ],
             ),

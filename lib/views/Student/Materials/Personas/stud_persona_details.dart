@@ -78,9 +78,9 @@ class _stud_personaDetailsState extends State<stud_personaDetails> {
 
 
     Fluttertoast.showToast(
-        msg: "Your " + title + " persona has been deleted",
+        msg: " " + title + " persona has been deleted",
         toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.CENTER,
+        gravity: ToastGravity.BOTTOM,
         timeInSecForIosWeb: 1,
         backgroundColor: Colors.black,
         textColor: Colors.white,

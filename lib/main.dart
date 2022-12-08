@@ -1,9 +1,11 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:treepy/views/Lecturer/Course_Materials/Topics/Uploads/uploadNotes.dart';
+import 'package:treepy/views/Student/Materials/Notes/notes_home.dart';
 import 'package:treepy/views/Student/Materials/Personas/stud_persona_list.dart';
 import 'package:treepy/views/Student/Materials/Reports/bar_graph.dart';
 import 'package:treepy/views/auth/main_page.dart';
@@ -88,7 +90,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
         routes: {
           '/toStud_persona_list' : (context) => studPersonas(),
           // When navigating to the "/second" route, build the SecondScreen widget.
@@ -110,7 +112,8 @@ class MyApp extends StatelessWidget {
 
 
       ),
-        home:
+        home: //
+      // AddNotePage()
        // PieChartSample2()//uploadNotes(Personatitle: '', Coursetitle: '', Topictitle: '',)
         //CreateReadingSchedule()
         //studPersonas()//mypersonas()//TopicContent()//mypersonas()

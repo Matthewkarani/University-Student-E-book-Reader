@@ -7,6 +7,9 @@ import 'package:treepy/views/Student/Materials/Personas/stud_topic_list.dart';
 
 import '../../../../app_styles.dart';
 import '../../Enroll/stud_enroll_to_persona.dart';
+import '../../Home/stud_home_page.dart';
+import '../../Profile/stud_profile.dart';
+import '../Scheduler/Schedule_home.dart';
 
 
 class studPersonas extends StatefulWidget {
@@ -45,7 +48,7 @@ class _studPersonasState extends State<studPersonas> {
   Widget build(BuildContext context) {
     return Scaffold(
         drawer: Drawer(
-          backgroundColor: customBrown2,
+
 
           child: ListView(
             // Important: Remove any padding from the ListView.
@@ -54,9 +57,10 @@ class _studPersonasState extends State<studPersonas> {
               const DrawerHeader(
 
                 decoration: BoxDecoration(
-                  color: Colors.blue,
+                  color: Color(0xffc19236),
                 ),
-                child: Text(''),
+                child: Text('Persona Dashboard',
+                  style: TextStyle(color: Colors.white, fontSize: 20),),
               ),
               ListTile(
                 title: const Text('Enroll to Persona'),
@@ -66,6 +70,28 @@ class _studPersonasState extends State<studPersonas> {
                       MaterialPageRoute(
                           builder:
                               (context)=>EnrollPersona()));
+                  scaffoldKey.currentState!.closeDrawer();
+                },
+              ),
+              ListTile(
+                title: const Text('My Schedules'),
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder:
+                              (context)=>scheduler_home()));
+                  scaffoldKey.currentState!.closeDrawer();
+                },
+              ),
+              ListTile(
+                title: const Text('My Profile'),
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder:
+                              (context)=>studProfile()));
                   scaffoldKey.currentState!.closeDrawer();
                 },
               ),

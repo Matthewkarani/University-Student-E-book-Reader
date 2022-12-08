@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:treepy/app_styles.dart';
+import 'package:treepy/views/Lecturer/report_pages/readingreportbar%20graph.dart';
 
 import 'enrolledStudents.dart';
 
@@ -60,15 +61,14 @@ class _reportsHomeNavState extends State<reportsHomeNav> {
             trailing: MaterialButton(
             color: customBrown2,
             shape: RoundedRectangleBorder(
-    borderRadius: BorderRadius.circular(20)),
-    child: Text('Open',
+    borderRadius: BorderRadius.circular(20)),    child: Text('Open',
     style: TextStyle(color: Colors.white),),
     onPressed: () {
     // Navigator.push(context,
     // MaterialPageRoute(builder:
-    // (context) =>
-    // TopicContent(Topictitle: snapshot.data[index].data()["topic_title"],
-    // Persona_title:Personatitle, Coursetitle:Coursetitle))
+
+    // (context) =>BarChartSample1()
+    // )
     // );
     }
 
